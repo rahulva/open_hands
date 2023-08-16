@@ -24,11 +24,10 @@ class AppTheme {
     final Color primaryColor = HexColor('#54D3C2');
     final Color secondaryColor = HexColor('#54D3C2');
     final ColorScheme colorScheme = const ColorScheme.light().copyWith(
-      primary: primaryColor,
-      secondary: secondaryColor,
-      error: const Color(0xFFB00020),
-      background: const Color(0xFFFFFFFF)
-    );
+        primary: primaryColor,
+        secondary: secondaryColor,
+        error: const Color(0xFFB00020),
+        background: const Color(0xFFFFFFFF));
     final ThemeData base = ThemeData.light();
     return base.copyWith(
       colorScheme: colorScheme,
@@ -46,6 +45,10 @@ class AppTheme {
       primaryTextTheme: _buildTextTheme(base.primaryTextTheme),
       platform: TargetPlatform.android,
     );
+  }
+
+  static EdgeInsets padding() {
+    return const EdgeInsets.only(top: 100, bottom: 100, left: 18, right: 18);
   }
 }
 
