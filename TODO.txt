@@ -1,6 +1,23 @@
-#1 Registration POC (form, http)
-#2 Camara POC
-#3 integrating theme
+#1 Registration POC (form, http) - DONE
+#2 Camara POC - DONE
+#3 Registration UI (integrated with theme)
+PostListPage UI - with dummy data
+#3 Registration Action - Navigate to Login Page
+#4 Login Page - UI
+#4 Login Page - Action - Navigate to MyPosts/PostListPage
+
+#4 PostListPage Action - Navigate to PostDetailPage
+#4 PostDetailPage UI - (view with dummy data)
+  PostDetailPage - Action Edit/Delete (if by the user)
+  PostDetailPage - Action Contact Doner
+Doner Contact Page - UI
+Doner Contact Page - Action, Create a contact data
+
+
+
+
+#4 Login Page - Action Navigate to
+
 
 Prepare home screen with dummy data (hotel_list_view to post_list_view)
 Remove unnecessary UIs (filters/

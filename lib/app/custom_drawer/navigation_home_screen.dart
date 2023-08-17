@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:open_hands/app/custom_drawer/drawer_user_controller.dart';
 import 'package:open_hands/app/custom_drawer/home_drawer.dart';
 import 'package:open_hands/app/hotel_booking/hotel_home_screen.dart';
+import 'package:open_hands/app/profile/user_registration_view.dart';
 import 'package:open_hands/app/screens/feedback_screen.dart';
 import 'package:open_hands/app/screens/help_screen.dart';
 import 'package:open_hands/app/screens/invite_friend_screen.dart';
 import 'package:open_hands/app/theme/base_theme.dart';
-import 'package:open_hands/app/words_home_screen.dart';
+import 'package:open_hands/app/item_post/words_home_screen.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
   const NavigationHomeScreen({super.key});
@@ -39,11 +40,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
             screenIndex: drawerIndex,
             drawerWidth: MediaQuery.of(context).size.width * 0.75,
             onDrawerCall: (DrawerIndex drawerIndexData) {
-              changeIndex(
-                  drawerIndexData); //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
+              //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
+              changeIndex(drawerIndexData);
             },
-            screenView:
-                screenView, //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
+            //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
+            screenView: screenView,
           ),
         ),
       ),
@@ -77,6 +78,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         case DrawerIndex.Invite:
           setState(() {
             screenView = InviteFriend();
+          });
+          break;
+        case DrawerIndex.registration:
+          setState(() {
+            screenView = const UserRegistrationView();
           });
           break;
         default:

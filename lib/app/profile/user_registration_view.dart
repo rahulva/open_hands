@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/common/AppTextField.dart';
 import 'package:open_hands/app/common/Components.dart';
 import 'package:open_hands/app/common/UserService.dart';
 import 'package:open_hands/app/domain/user_model.dart';
-import 'package:open_hands/app/theme/app_theme.dart';
 
 class UserRegistrationView extends StatefulWidget {
   const UserRegistrationView({super.key});

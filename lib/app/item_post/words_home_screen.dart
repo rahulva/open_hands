@@ -5,7 +5,7 @@ import 'package:open_hands/app/domain/words_list_data.dart';
 import 'package:open_hands/app/screens/calendar/calendar_popup_view.dart';
 import 'package:open_hands/app/screens/filter/filters_screen.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
-import 'package:open_hands/app/words_list_view.dart';
+import 'package:open_hands/app/item_post/words_list_view.dart';
 
 class WordHomeScreen extends StatefulWidget {
   const WordHomeScreen({Key? key}) : super(key: key);
