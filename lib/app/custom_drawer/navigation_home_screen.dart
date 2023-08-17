@@ -9,6 +9,8 @@ import 'package:open_hands/app/theme/base_theme.dart';
 import 'package:open_hands/app/words_home_screen.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
+  const NavigationHomeScreen({super.key});
+
   @override
   _NavigationHomeScreenState createState() => _NavigationHomeScreenState();
 }
@@ -37,11 +39,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
             screenIndex: drawerIndex,
             drawerWidth: MediaQuery.of(context).size.width * 0.75,
             onDrawerCall: (DrawerIndex drawerIndexData) {
-              changeIndex(drawerIndexData);
-              //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
+              changeIndex(
+                  drawerIndexData); //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
             },
-            screenView: screenView,
-            //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
+            screenView:
+                screenView, //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
           ),
         ),
       ),

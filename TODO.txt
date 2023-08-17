@@ -1,0 +1,6 @@
+#1 Registration POC (form, http)
+#2 Camara POC
+#3 integrating theme
+
+Prepare home screen with dummy data (hotel_list_view to post_list_view)
+Remove unnecessary UIs (filters/
