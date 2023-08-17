@@ -29,7 +29,7 @@ class _UserRegistrationViewState extends State<UserRegistrationView> {
       appBar: Components.buildAppBar('Create User'),
       body: SingleChildScrollView(
         child: Padding(
-            padding: AppTheme.padding(),
+            padding: const EdgeInsets.only(top: 100, bottom: 100, left: 18, right: 18),
             child: Container(
                 height: 550,
                 width: 400,
