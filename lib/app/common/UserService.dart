@@ -15,9 +15,6 @@ class UserService {
   }
 
   Future<http.Response> postUser(UserModel userModel) async {
-    // HttpClient httpClient = HttpClient();
-    // httpClient.postUrl(Uri.parse("http://10.0.2.2:8080/users"));
-    // httpClient.
     print("Value ${userModel.email} ${userModel.firsName} ${userModel.lastName} ${userModel.password}");
 
     return http.post(Uri.parse("http://10.0.2.2:8080/users"),
@@ -27,6 +24,17 @@ class UserService {
           'firsName': userModel.firsName,
           'lastName': userModel.lastName,
           'password': userModel.password
+        }));
+  }
+
+  Future<http.Response> userLogin(UserModel userModel) async {
+    print("Value ${userModel.email} ${userModel.password}");
+
+    return http.post(Uri.parse("http://10.0.2.2:8080/users/login"),
+        headers: header,
+        body: jsonEncode(<String, String>{
+          'email': userModel.email,
+          'firsName': userModel.firsName
         }));
   }
 

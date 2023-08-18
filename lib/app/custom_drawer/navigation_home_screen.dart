@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:open_hands/app/custom_drawer/drawer_user_controller.dart';
 import 'package:open_hands/app/custom_drawer/home_drawer.dart';
 import 'package:open_hands/app/hotel_booking/hotel_home_screen.dart';
+import 'package:open_hands/app/profile/user_login_view.dart';
 import 'package:open_hands/app/profile/user_registration_view.dart';
 import 'package:open_hands/app/screens/feedback_screen.dart';
 import 'package:open_hands/app/screens/help_screen.dart';
@@ -83,6 +84,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         case DrawerIndex.registration:
           setState(() {
             screenView = const UserRegistrationView();
+          });
+          break;
+        case DrawerIndex.login:
+          setState(() {
+            screenView = const UserLoginView();
           });
           break;
         default:

@@ -3,7 +3,6 @@ import 'package:open_hands/app/common/AppTextField.dart';
 import 'package:open_hands/app/common/Components.dart';
 import 'package:open_hands/app/common/UserService.dart';
 import 'package:open_hands/app/domain/user_model.dart';
-import 'package:open_hands/app/theme/app_theme.dart';
 
 class UserRegistrationView extends StatefulWidget {
   const UserRegistrationView({super.key});
@@ -22,7 +21,6 @@ class _UserRegistrationViewState extends State<UserRegistrationView> {
 
   @override
   Widget build(BuildContext context) {
-    double width2 = 300;
     return Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(children: <Widget>[
@@ -33,25 +31,21 @@ class _UserRegistrationViewState extends State<UserRegistrationView> {
                 alignment: Alignment.topCenter,
                 child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                   buildField(
-                      width: width2,
                       onChanged: (text) {
                         userModel.firsName = text;
                       },
                       hintText: 'First Name'),
                   buildField(
-                      width: width2,
                       onChanged: (text) {
                         userModel.lastName = text;
                       },
                       hintText: 'Last Name'),
                   buildField(
-                      width: width2,
                       onChanged: (text) {
                         userModel.email = text;
                       },
                       hintText: 'Email'),
                   buildField(
-                      width: width2,
                       onChanged: (text) {
                         userModel.password = text;
                       },
@@ -64,14 +58,10 @@ class _UserRegistrationViewState extends State<UserRegistrationView> {
         ]));
   }
 
-  Container buildField({required double width, var onChanged, required String hintText}) {
+  Container buildField({required var onChanged, required String hintText}) {
     return Container(
-        // width: width,
-        decoration: const BoxDecoration(boxShadow: []),
-        child: AppTextField(onChanged: onChanged, hintText: hintText));
+        decoration: const BoxDecoration(boxShadow: []), child: AppTextField(onChanged: onChanged, hintText: hintText));
   }
-
-
 
   Future<void> doOnSave() async {
     print("Fname ${userModel.firsName}, Lname ${userModel.lastName}");

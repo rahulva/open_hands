@@ -61,8 +61,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
       ),
       DrawerList(
         index: DrawerIndex.registration,
-        labelName: 'Registration - Beta',
-        icon: const Icon(Icons.app_registration),
+        labelName: 'Registration - delta',
+        icon: const Icon(Icons.app_registration_outlined),
+      ),
+      DrawerList(
+        index: DrawerIndex.login,
+        labelName: 'Login - delta',
+        icon: const Icon(Icons.login),
       ),
     ];
   }
@@ -306,6 +311,7 @@ enum DrawerIndex {
   About,
   registration,
   Invite,
+  login,
 }
 
 class DrawerList {
