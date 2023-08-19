@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/common/AppTextField.dart';
 import 'package:open_hands/app/common/Components.dart';
+import 'package:open_hands/app/common/app_text_field.dart';
 import 'package:open_hands/app/common/post_service.dart';
 import 'package:open_hands/app/domain/post_model.dart';
 

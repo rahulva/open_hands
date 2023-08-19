@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppTextField extends StatelessWidget {
@@ -8,7 +7,7 @@ class AppTextField extends StatelessWidget {
   final Function onChanged;
   final TextEditingController? editingController;
 
-  AppTextField({this.hintStyle, this.hintText, this.icon, this.editingController, required this.onChanged});
+  const AppTextField({super.key, this.hintStyle, this.hintText, this.icon, this.editingController, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
