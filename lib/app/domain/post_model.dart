@@ -1,17 +1,30 @@
-
 import 'dart:core';
 
 class PostModel {
-  int id;
-  String name;
-  String description;
-  String location;
-  String category;
-  String subCategory;
-  List<String> images;
-  DateTime dateTime;
-  String byUser;
+  int? id;
+  late String name;
+  late String description;
+  late String category;
+  late String subCategory;
+  late String location;
+  late List<String>? images = List.empty(growable: true);
+  late DateTime dateTime;
+  late String byUser;
 
-  PostModel(this.id, this.name, this.description, this.location, this.category, this.subCategory, this.images,
-      this.dateTime, this.byUser);
+  @override
+  String toString() {
+    return 'PostModel{id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, location: $location, images: $images, dateTime: $dateTime, byUser: $byUser}';
+  }
+
+  Map toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+        'category': category,
+        'subCategory': subCategory,
+        'location': location,
+        'images': images,
+        'dateTime': dateTime.toString(),
+        'byUser': byUser,
+      };
 }

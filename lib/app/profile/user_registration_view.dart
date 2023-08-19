@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/common/AppTextField.dart';
 import 'package:open_hands/app/common/Components.dart';
-import 'package:open_hands/app/common/UserService.dart';
+import 'package:open_hands/app/common/user_service.dart';
 import 'package:open_hands/app/domain/user_model.dart';
 
 class UserRegistrationView extends StatefulWidget {
@@ -65,9 +65,7 @@ class _UserRegistrationViewState extends State<UserRegistrationView> {
 
   Future<void> doOnSave() async {
     print("Fname ${userModel.firsName}, Lname ${userModel.lastName}");
-    final text = firstNameController.text;
-    print("Fname : $text");
-    var response = await UserService.get().postUser(userModel).whenComplete(() => print("Request Completed!!"));
+    var response = await UserService.get().createUser(userModel).whenComplete(() => print("Request Completed!!"));
     print("Request Completed!! ${response.statusCode}");
 
     if (response.statusCode == 201) {

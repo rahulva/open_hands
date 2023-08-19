@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/common/AppTextField.dart';
 import 'package:open_hands/app/common/Components.dart';
-import 'package:open_hands/app/common/UserService.dart';
+import 'package:open_hands/app/common/user_service.dart';
 import 'package:open_hands/app/domain/user_model.dart';
 
 class UserLoginView extends StatefulWidget {
@@ -14,8 +14,6 @@ class UserLoginView extends StatefulWidget {
 var userModel = UserModel('', '', '', '');
 
 class _UserLoginViewState extends State<UserLoginView> {
-  TextEditingController emailController = TextEditingController(text: userModel.email);
-  TextEditingController passwordController = TextEditingController(text: userModel.password);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +50,7 @@ class _UserLoginViewState extends State<UserLoginView> {
   }
 
   Future<void> login() async {
-    print("Email ${userModel.email}, Password ${userModel.password}");
+    print("Email $userModel");
 
     var response = await UserService.get().userLogin(userModel).whenComplete(() => print("Login Completed!!"));
     print("Request Completed!! ${response.statusCode}");

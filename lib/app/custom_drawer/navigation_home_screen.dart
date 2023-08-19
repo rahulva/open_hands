@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:open_hands/app/custom_drawer/drawer_user_controller.dart';
 import 'package:open_hands/app/custom_drawer/home_drawer.dart';
 import 'package:open_hands/app/hotel_booking/hotel_home_screen.dart';
+import 'package:open_hands/app/item_post/create_post_view.dart';
 import 'package:open_hands/app/profile/user_login_view.dart';
 import 'package:open_hands/app/profile/user_registration_view.dart';
 import 'package:open_hands/app/screens/feedback_screen.dart';
@@ -41,10 +42,10 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
             screenIndex: drawerIndex,
             drawerWidth: MediaQuery.of(context).size.width * 0.75,
             onDrawerCall: (DrawerIndex drawerIndexData) {
-              //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
+              /* callback from drawer for replace screen as user need with passing DrawerIndex(Enum index) */
               changeIndex(drawerIndexData);
             },
-            //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
+            /* we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc... */
             screenView: screenView,
           ),
         ),
@@ -89,6 +90,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         case DrawerIndex.login:
           setState(() {
             screenView = const UserLoginView();
+          });
+          break;
+        case DrawerIndex.new_post:
+          setState(() {
+            screenView = const CreatePostView();
           });
           break;
         default:

@@ -2,17 +2,36 @@
 #02 Camara POC - DONE
 #03 Registration UI (integrated with theme) DONE
 #04 Login Page - UI DONE
-#04.1 Login Page - Action 1 - Authenticate (http)
-#05 PostListPage UI - with dummy data
+#09 Add New Post UI v1 - initial UI DONE
+#09 Add New Post Action - Add to dummy data
+#10 Posts List View UI (with dummy)
+
+#05 Login Page - Action 1 - Authenticate (http)
+#06 Login Page - Action 2 - Redirect to X screen on success
+
  Prepare/design dummy data
 #06 Registration Action - Navigate to Login Page
 #07 Login Page - Action - Navigate to MyPosts/PostListPage
 #08 PostListPage Action - Navigate to PostDetailPage
-#09 PostDetailPage UI - (view with dummy data)
+
+#09.01 Add New Post UI v2 - description is a text area
+#09.02 Add New Post UI v2 - category, SubCategory a dropdown
+#09.03 Add New Post UI v2 - images is a image picker/camara integration
+#09.03 Add New Post UI v2 - Validations (desc 10-200, Name, 5-50, image 1-10)
+#09.03 Add New Post Action - Add real data
+
+
+#11 View Post Detail UI - (view with dummy data)
+#10 Posts List View - Action-1 - Navigate to PostDetailPage
+
 #10 PostDetailPage - Action Edit/Delete (if by the user)
 #11 PostDetailPage - Action Contact Donner
 #12 Donner Contact Page - UI
 #13 Donner Contact Page - Action, Create a contact data
+#XX Add validations for forms
+#05.xx Login Page - Validation
+#06.XX Registration - Validation
+#XX.X Login
 
 Real action implementation
 

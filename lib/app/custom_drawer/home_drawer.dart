@@ -69,6 +69,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
         labelName: 'Login - delta',
         icon: const Icon(Icons.login),
       ),
+      DrawerList(
+        index: DrawerIndex.new_post,
+        labelName: 'New Post - delta/temp',
+        icon: const Icon(Icons.create),
+      ),
     ];
   }
 
@@ -248,13 +253,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             0.0,
                             0.0),
                         child: Padding(
-                          padding: EdgeInsets.only(top: 8, bottom: 8),
+                          padding: const EdgeInsets.only(top: 8, bottom: 8),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.75 - 64,
                             height: 46,
                             decoration: BoxDecoration(
                               color: Colors.blue.withOpacity(0.2),
-                              borderRadius: new BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(0),
                                 topRight: Radius.circular(28),
                                 bottomLeft: Radius.circular(0),
@@ -302,17 +307,7 @@ ListTile signOutWidget() {
 
 void onTapped() {}
 
-enum DrawerIndex {
-  HOME,
-  WORD_HOME,
-  FeedBack,
-  Help,
-  Share,
-  About,
-  registration,
-  Invite,
-  login,
-}
+enum DrawerIndex { HOME, WORD_HOME, FeedBack, Help, Share, About, registration, Invite, login, new_post }
 
 class DrawerList {
   DrawerList({
