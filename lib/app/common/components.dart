@@ -12,7 +12,7 @@ class Components {
   static Widget appBarClosable(BuildContext context, String screenTitle) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.buildLightTheme().backgroundColor,
+        color: AppTheme.buildLightTheme().colorScheme.background,
         boxShadow: <BoxShadow>[
           BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, 2), blurRadius: 4.0),
         ],
@@ -21,7 +21,7 @@ class Components {
         padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, left: 8, right: 8),
         child: Row(
           children: <Widget>[
-            Container(
+/*          Container(
               alignment: Alignment.centerLeft,
               width: AppBar().preferredSize.height + 40,
               height: AppBar().preferredSize.height,
@@ -40,7 +40,7 @@ class Components {
                   ),
                 ),
               ),
-            ),
+            ),*/
             Expanded(
               child: Center(
                 child: Text(

@@ -105,7 +105,7 @@ class _DrawerUserControllerState extends State<DrawerUserController> with Ticker
                       //transform we use for the stable drawer  we, not need to move with scroll view
                       transform: Matrix4.translationValues(scrollController!.offset, 0.0, 0.0),
                       child: HomeDrawer(
-                        screenIndex: widget.screenIndex ?? DrawerIndex.HOME, //widget.screenIndex == null ? DrawerIndex.HOME : widget.screenIndex,
+                        screenIndex: widget.screenIndex ?? DrawerIndex.home, //widget.screenIndex == null ? DrawerIndex.HOME : widget.screenIndex,
                         iconAnimationController: iconAnimationController,
                         callBackIndex: (DrawerIndex indexType) {
                           onDrawerClick();

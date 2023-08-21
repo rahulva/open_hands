@@ -24,40 +24,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
   void setDrawerListArray() {
     drawerList = <DrawerList>[
       DrawerList(
-        index: DrawerIndex.HOME,
-        labelName: 'Home',
-        icon: const Icon(Icons.home),
-      ),
-      DrawerList(
-        index: DrawerIndex.WORD_HOME,
-        labelName: 'Word Home',
-        icon: const Icon(Icons.wordpress),
-      ),
-      DrawerList(
-        index: DrawerIndex.Help,
-        labelName: 'Help',
-        isAssetsImage: true,
-        imageName: 'assets/images/supportIcon.png',
-      ),
-      DrawerList(
-        index: DrawerIndex.FeedBack,
-        labelName: 'FeedBack',
-        icon: const Icon(Icons.help),
-      ),
-      DrawerList(
-        index: DrawerIndex.Invite,
-        labelName: 'Invite Friend',
-        icon: const Icon(Icons.group),
-      ),
-      DrawerList(
-        index: DrawerIndex.Share,
-        labelName: 'Rate the app',
-        icon: const Icon(Icons.share),
-      ),
-      DrawerList(
-        index: DrawerIndex.About,
-        labelName: 'About Us',
-        icon: const Icon(Icons.info),
+        index: DrawerIndex.postList,
+        labelName: 'Posts Home',
+        icon: const Icon(Icons.post_add),
       ),
       DrawerList(
         index: DrawerIndex.registration,
@@ -70,9 +39,40 @@ class _HomeDrawerState extends State<HomeDrawer> {
         icon: const Icon(Icons.login),
       ),
       DrawerList(
-        index: DrawerIndex.new_post,
+        index: DrawerIndex.newPost,
         labelName: 'New Post - delta/temp',
         icon: const Icon(Icons.create),
+      ),
+      DrawerList(
+        index: DrawerIndex.home,
+        labelName: 'Home',
+        icon: const Icon(Icons.home),
+      ),
+      DrawerList(
+        index: DrawerIndex.help,
+        labelName: 'Help',
+        isAssetsImage: true,
+        imageName: 'assets/images/supportIcon.png',
+      ),
+      DrawerList(
+        index: DrawerIndex.feedBack,
+        labelName: 'FeedBack',
+        icon: const Icon(Icons.help),
+      ),
+      DrawerList(
+        index: DrawerIndex.invite,
+        labelName: 'Invite Friend',
+        icon: const Icon(Icons.group),
+      ),
+      DrawerList(
+        index: DrawerIndex.share,
+        labelName: 'Rate the app',
+        icon: const Icon(Icons.share),
+      ),
+      DrawerList(
+        index: DrawerIndex.about,
+        labelName: 'About Us',
+        icon: const Icon(Icons.info),
       ),
     ];
   }
@@ -203,17 +203,15 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   Container(
                     width: 6.0,
                     height: 46.0,
-                    // decoration: BoxDecoration(
-                    //   color: widget.screenIndex == listData.index
-                    //       ? Colors.blue
-                    //       : Colors.transparent,
-                    //   borderRadius: new BorderRadius.only(
-                    //     topLeft: Radius.circular(0),
-                    //     topRight: Radius.circular(16),
-                    //     bottomLeft: Radius.circular(0),
-                    //     bottomRight: Radius.circular(16),
-                    //   ),
-                    // ),
+                    decoration: BoxDecoration(
+                      color: widget.screenIndex == listData.index ? Colors.blue : Colors.transparent,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(0),
+                        topRight: Radius.circular(16),
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(16),
+                      ),
+                    ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(4.0),
@@ -300,14 +298,16 @@ ListTile signOutWidget() {
       color: Colors.red,
     ),
     onTap: () {
-      onTapped();
+      onSignOutTapped();
     },
   );
 }
 
-void onTapped() {}
+void onSignOutTapped() {
+  //TODO signOut action
+}
 
-enum DrawerIndex { HOME, WORD_HOME, FeedBack, Help, Share, About, registration, Invite, login, new_post }
+enum DrawerIndex { home, postList, feedBack, help, share, about, registration, invite, login, newPost }
 
 class DrawerList {
   DrawerList({

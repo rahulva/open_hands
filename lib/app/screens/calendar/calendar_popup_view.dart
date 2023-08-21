@@ -78,7 +78,7 @@ class _CalendarPopupViewState extends State<CalendarPopupView> with TickerProvid
                     padding: const EdgeInsets.all(24.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppTheme.buildLightTheme().backgroundColor,
+                        color: AppTheme.buildLightTheme().colorScheme.background,
                         borderRadius: const BorderRadius.all(Radius.circular(24.0)),
                         boxShadow: <BoxShadow>[
                           BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(4, 4), blurRadius: 8.0),

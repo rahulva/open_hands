@@ -5,14 +5,19 @@ import 'package:open_hands/app/domain/user_model.dart';
 
 class UserService {
   // 'Context-Type': 'application/json; charset=UTF-8'
+
   static const Map<String, String> header = {
     'Content-type': 'application/json',
     'Accept': 'application/json',
   };
   static const String uri = "http://10.0.2.2:8080/users";
 
+  late final UserModel? loggedInUser;
+
+  static final UserService _userService = UserService();
+
   static UserService get() {
-    return UserService();
+    return _userService;
   }
 
   Future<http.Response> createUser(UserModel userModel) async {

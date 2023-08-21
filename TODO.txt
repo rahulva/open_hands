@@ -3,7 +3,7 @@
 #03 Registration UI (integrated with theme) DONE
 #04 Login Page - UI DONE
 #09 Add New Post UI v1 - initial UI DONE
-#09 Add New Post Action - Add to dummy data
+#09 Add New Post Action - Add to dummy data [WIP]
 #10 Posts List View UI (with dummy)
 
 #05 Login Page - Action 1 - Authenticate (http)

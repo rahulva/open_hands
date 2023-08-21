@@ -3,19 +3,19 @@ import 'package:open_hands/app/custom_drawer/drawer_user_controller.dart';
 import 'package:open_hands/app/custom_drawer/home_drawer.dart';
 import 'package:open_hands/app/hotel_booking/hotel_home_screen.dart';
 import 'package:open_hands/app/item_post/create_post_view.dart';
+import 'package:open_hands/app/item_post/post_home_list_view.dart';
 import 'package:open_hands/app/profile/user_login_view.dart';
 import 'package:open_hands/app/profile/user_registration_view.dart';
 import 'package:open_hands/app/screens/feedback_screen.dart';
 import 'package:open_hands/app/screens/help_screen.dart';
 import 'package:open_hands/app/screens/invite_friend_screen.dart';
 import 'package:open_hands/app/theme/base_theme.dart';
-import 'package:open_hands/app/item_post/words_home_screen.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
   const NavigationHomeScreen({super.key});
 
   @override
-  _NavigationHomeScreenState createState() => _NavigationHomeScreenState();
+  State<NavigationHomeScreen> createState() => _NavigationHomeScreenState();
 }
 
 class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
@@ -24,8 +24,8 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
 
   @override
   void initState() {
-    drawerIndex = DrawerIndex.HOME;
-    screenView = const HotelHomeScreen();
+    drawerIndex = DrawerIndex.postList;
+    screenView = const PostHomeListView();
     super.initState();
   }
 
@@ -57,27 +57,27 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
     if (drawerIndex != drawerIndexData) {
       drawerIndex = drawerIndexData;
       switch (drawerIndex) {
-        case DrawerIndex.HOME:
+        case DrawerIndex.home:
           setState(() {
             screenView = const HotelHomeScreen();
           });
           break;
-        case DrawerIndex.WORD_HOME:
+        case DrawerIndex.postList:
           setState(() {
-            screenView = const WordHomeScreen();
+            screenView = const PostHomeListView();
           });
           break;
-        case DrawerIndex.Help:
+        case DrawerIndex.help:
           setState(() {
             screenView = HelpScreen();
           });
           break;
-        case DrawerIndex.FeedBack:
+        case DrawerIndex.feedBack:
           setState(() {
             screenView = FeedbackScreen();
           });
           break;
-        case DrawerIndex.Invite:
+        case DrawerIndex.invite:
           setState(() {
             screenView = InviteFriend();
           });
@@ -92,7 +92,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
             screenView = const UserLoginView();
           });
           break;
-        case DrawerIndex.new_post:
+        case DrawerIndex.newPost:
           setState(() {
             screenView = const CreatePostView();
           });

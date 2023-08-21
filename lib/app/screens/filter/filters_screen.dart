@@ -24,7 +24,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppTheme.buildLightTheme().backgroundColor,
+      color: AppTheme.buildLightTheme().colorScheme.background,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
