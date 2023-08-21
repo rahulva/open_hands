@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/custom_drawer/drawer_user_controller.dart';
 import 'package:open_hands/app/hotel_booking/hotel_home_screen.dart';
-import 'package:open_hands/app/item_post/create_post_view.dart';
-import 'package:open_hands/app/item_post/post_home_list_view.dart';
+import 'package:open_hands/app/item_post/post_create.dart';
+import 'package:open_hands/app/item_post/post_list.dart';
 import 'package:open_hands/app/profile/user_login_view.dart';
 import 'package:open_hands/app/profile/user_registration_view.dart';
 import 'package:open_hands/app/screens/feedback_screen.dart';
@@ -26,7 +26,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   @override
   void initState() {
     drawerIndex = DrawerIndex.home;
-    screenView = const PostHomeListView();
+    screenView = const PostList();
     super.initState();
   }
 
@@ -60,7 +60,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       switch (drawerIndex) {
         case DrawerIndex.home:
           setState(() {
-            screenView = const PostHomeListView();
+            screenView = const PostList();
           });
           break;
         case DrawerIndex.help:
@@ -90,7 +90,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
           break;
         case DrawerIndex.newPost:
           setState(() {
-            screenView = const CreatePostView();
+            screenView = const PostCreate();
           });
           break;
         case DrawerIndex.hotelHome:

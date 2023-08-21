@@ -20,6 +20,13 @@ class AppTheme {
     );
   }
 
+  //TEMP colours/ to be replaced
+  // static const Color mirage = Color(0xff1d273b);
+  // static const Color rawSienna = Color(0xffd7834f);
+  // static const Color creamColor = Color(0xfff5f5ff);
+  // static const Color yellowish = Color(0xffE7B975);
+  // static const Color shadowColor = Colors.black87;
+
   static ThemeData buildLightTheme() {
     final Color primaryColor = HexColor('#54D3C2');
     final Color secondaryColor = HexColor('#54D3C2');
@@ -57,7 +64,7 @@ class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll('#', '');
     if (hexColor.length == 6) {
-      hexColor = 'FF' + hexColor;
+      hexColor = 'FF$hexColor';
     }
     return int.parse(hexColor, radix: 16);
   }

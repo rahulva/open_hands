@@ -1,23 +1,22 @@
 #01 Registration POC (form, http) - DONE
 #02 Camara POC - DONE
+
+#03 User Signup
 #03 Registration UI (integrated with theme) DONE
-#04 Login Page - UI DONE
-#09 Add New Post UI v1 - initial UI DONE
-#09 Add New Post Action - Add to dummy data [WIP]
-#10 Posts List View UI (with dummy) DONE
+#03.01 Registration Action - Navigate to Login Page
+#03.XX Registration - Validation
+ Explore Single sign-on for registration
 
 04# Login/Logout Management
+#04 Login Page - UI DONE
 #04.01 Login Page - Action 1 - Authenticate (http)
 #04.02 Login Page - Action 2 - Redirect to Home/MyPosts with ?My profile?, My Posts, Contacts; Change login to logout
 #04.03 Implement Logout - Remove all above, change logout to login, nullify the logged-in user
 #04.xx Login Page - Validation
 
-#06 User Signup
-#06.01 Registration Action - Navigate to Login Page
-#06.XX Registration - Validation
- Explore Single sign-on for registration
-
 #09 Add New Post
+#09 Add New Post UI v1 - initial UI DONE
+#09 Add New Post Action - Add to dummy data [WIP]
 #09.01 Add New Post UI v2 - description is a text area
 #09.02 Add New Post UI v2 - category, SubCategory a dropdown
 #09.03 Add New Post UI v2 - images is a image picker/camara integration
@@ -25,14 +24,21 @@
 #09.03 Add New Post Action - Add real data
 
 #10 Post List View (Home)
-#10.02 Posts List View UI -improve with images
+#10 Posts List View UI (with dummy) - DONE
+#10.02 Posts List View -Improve list item with image -
 #10.xx ??Implement Search/filter feature??
 #10.xx ??Implement Like feature??
 
+
 #11 View Post
-#11.01 Posts List View - navigate to Post Detail Page, Post Detail Page - with Dummay Data
-#11.02 Posts Detail View UI - Display images
-#11.03 PostDetailPage - Action Contact Donner
+#11.01 Posts List View - navigate to Post Detail Page (dummy Data) - DONE
+#11.02 Posts Detail View UI - Display images - 50%
+#11.03 Post Detail View - Action 'Request' Donner
+    Make button available conditionally
+#11.04 Post Detail View UI - Improve look and feel/Teaming -
+#11.xx Post Detail View - Real data integration
+
+
 
 #12 My Posts
 #12.01 My Posts list View

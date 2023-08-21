@@ -7,14 +7,14 @@ import 'package:open_hands/app/common/post_service.dart';
 import 'package:open_hands/app/custom_drawer/navigation_home_screen.dart';
 import 'package:open_hands/app/domain/post_model.dart';
 
-class CreatePostView extends StatefulWidget {
-  const CreatePostView({super.key});
+class PostCreate extends StatefulWidget {
+  const PostCreate({super.key});
 
   @override
-  State<CreatePostView> createState() => _CreatePostViewState();
+  State<PostCreate> createState() => _PostCreateState();
 }
 
-class _CreatePostViewState extends State<CreatePostView> {
+class _PostCreateState extends State<PostCreate> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();

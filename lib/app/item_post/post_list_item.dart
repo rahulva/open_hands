@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/domain/post_model.dart';
+import 'package:open_hands/app/item_post/post_detail.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
-class PostListItemView extends StatelessWidget {
-  const PostListItemView({
+class PostListItem extends StatelessWidget {
+  const PostListItem({
     Key? key,
-    this.postModel,
+    required this.postModel,
     this.animationController,
     this.animation,
     this.callback,
   }) : super(key: key);
 
   final VoidCallback? callback;
-  final PostModel? postModel;
+  final PostModel postModel;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
@@ -29,7 +30,17 @@ class PostListItemView extends StatelessWidget {
               padding: const EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 16),
               child: InkWell(
                 splashColor: Colors.transparent,
-                onTap: callback,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PostDetail(
+                        postModel: postModel,
+                        key: Key('${postModel.id}'),
+                      ),
+                    ),
+                  );
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(16.0)),

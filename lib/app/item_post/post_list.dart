@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:open_hands/app/common/post_service.dart';
-import 'package:open_hands/app/item_post/post_list_item_view.dart';
+import 'package:open_hands/app/item_post/post_list_item.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
 import '../domain/post_model.dart';
 
-class PostHomeListView extends StatefulWidget {
-  const PostHomeListView({Key? key}) : super(key: key);
+class PostList extends StatefulWidget {
+  const PostList({Key? key}) : super(key: key);
 
   @override
-  State<PostHomeListView> createState() => _PostHomeListViewState();
+  State<PostList> createState() => _PostListState();
 }
 
-class _PostHomeListViewState extends State<PostHomeListView> with TickerProviderStateMixin {
+class _PostListState extends State<PostList> with TickerProviderStateMixin {
   AnimationController? animationController;
   PostService postService = PostService.get();
   final ScrollController _scrollController = ScrollController();
@@ -184,7 +184,7 @@ class _PostHomeListViewState extends State<PostHomeListView> with TickerProvider
             final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation);
             animationController?.forward();
 
-            return PostListItemView(
+            return PostListItem(
               callback: () {},
               postModel: posts[index],
               animation: animation,

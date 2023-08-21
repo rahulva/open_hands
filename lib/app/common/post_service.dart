@@ -84,7 +84,7 @@ class PostService {
             'Household',
             'Cleaning',
             'Colombo',
-            List.empty(),
+            ["https://images.unsplash.com/photo-1598928636135-d146006ff4be?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fGZhc2hpb258ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"],
             DateTime.now(),
             'Dummy user'))
         ..add(PostModel(
@@ -94,7 +94,7 @@ class PostService {
             'Electronics',
             'Radio',
             'Colombo',
-            List.empty(),
+            ["https://i.pinimg.com/736x/21/b8/7c/21b87c1668302c53892dc16c38ef9994.jpg"],
             DateTime.now(),
             'Dummy user'));
     }
