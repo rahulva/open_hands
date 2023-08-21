@@ -3,8 +3,13 @@ import 'package:open_hands/app/domain/post_model.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
 class PostListItemView extends StatelessWidget {
-  const PostListItemView({Key? key, this.postModel, this.animationController, this.animation, this.callback})
-      : super(key: key);
+  const PostListItemView({
+    Key? key,
+    this.postModel,
+    this.animationController,
+    this.animation,
+    this.callback,
+  }) : super(key: key);
 
   final VoidCallback? callback;
   final PostModel? postModel;

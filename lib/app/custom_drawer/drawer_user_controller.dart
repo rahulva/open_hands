@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:open_hands/app/custom_drawer/home_drawer.dart';
 import 'package:open_hands/app/theme/base_theme.dart';
 
+import 'drawer_list_item.dart';
+
 class DrawerUserController extends StatefulWidget {
   const DrawerUserController({
     Key? key,
@@ -52,8 +54,11 @@ class _DrawerUserControllerState extends State<DrawerUserController> with Ticker
         }
         iconAnimationController?.animateTo(0.0, duration: const Duration(milliseconds: 0), curve: Curves.fastOutSlowIn);
       } else if (scrollController!.offset > 0 && scrollController!.offset < widget.drawerWidth.floor()) {
-        iconAnimationController?.animateTo((scrollController!.offset * 100 / (widget.drawerWidth)) / 100,
-            duration: const Duration(milliseconds: 0), curve: Curves.fastOutSlowIn);
+        iconAnimationController?.animateTo(
+          (scrollController!.offset * 100 / (widget.drawerWidth)) / 100,
+          duration: const Duration(milliseconds: 0),
+          curve: Curves.fastOutSlowIn,
+        );
       } else {
         if (scrollOffset != 0.0) {
           setState(() {
@@ -63,7 +68,11 @@ class _DrawerUserControllerState extends State<DrawerUserController> with Ticker
             } catch (_) {}
           });
         }
-        iconAnimationController?.animateTo(1.0, duration: const Duration(milliseconds: 0), curve: Curves.fastOutSlowIn);
+        iconAnimationController?.animateTo(
+          1.0,
+          duration: const Duration(milliseconds: 0),
+          curve: Curves.fastOutSlowIn,
+        );
       }
     });
 
@@ -105,7 +114,8 @@ class _DrawerUserControllerState extends State<DrawerUserController> with Ticker
                       //transform we use for the stable drawer  we, not need to move with scroll view
                       transform: Matrix4.translationValues(scrollController!.offset, 0.0, 0.0),
                       child: HomeDrawer(
-                        screenIndex: widget.screenIndex ?? DrawerIndex.home, //widget.screenIndex == null ? DrawerIndex.HOME : widget.screenIndex,
+                        /*below is simplification of - widget.screenIndex == null ? DrawerIndex.HOME : widget.screenIndex,*/
+                        screenIndex: widget.screenIndex ?? DrawerIndex.home,
                         iconAnimationController: iconAnimationController,
                         callBackIndex: (DrawerIndex indexType) {
                           onDrawerClick();
@@ -155,10 +165,12 @@ class _DrawerUserControllerState extends State<DrawerUserController> with Ticker
                               borderRadius: BorderRadius.circular(AppBar().preferredSize.height),
                               child: Center(
                                 // if you use your own menu view UI you add form initialization
-                                child: widget.menuView ?? AnimatedIcon(
-                                        color: isLightMode ? BaseTheme.darkGrey : BaseTheme.white,
-                                        icon: widget.animatedIconData ?? AnimatedIcons.arrow_menu,
-                                        progress: iconAnimationController!),
+                                child: widget.menuView ??
+                                    AnimatedIcon(
+                                      color: isLightMode ? BaseTheme.darkGrey : BaseTheme.white,
+                                      icon: widget.animatedIconData ?? AnimatedIcons.arrow_menu,
+                                      progress: iconAnimationController!,
+                                    ),
                               ),
                               onTap: () {
                                 FocusScope.of(context).requestFocus(FocusNode());

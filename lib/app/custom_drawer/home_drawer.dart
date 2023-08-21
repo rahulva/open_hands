@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/theme/base_theme.dart';
 
+import 'drawer_list_item.dart';
+
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer({Key? key, this.screenIndex, this.iconAnimationController, this.callBackIndex}) : super(key: key);
 
@@ -13,7 +15,7 @@ class HomeDrawer extends StatefulWidget {
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
-  List<DrawerList>? drawerList;
+  List<DrawerListItem>? drawerList;
 
   @override
   void initState() {
@@ -22,54 +24,54 @@ class _HomeDrawerState extends State<HomeDrawer> {
   }
 
   void setDrawerListArray() {
-    drawerList = <DrawerList>[
-      DrawerList(
+    drawerList = <DrawerListItem>[
+      DrawerListItem(
         index: DrawerIndex.postList,
         labelName: 'Posts Home',
         icon: const Icon(Icons.post_add),
       ),
-      DrawerList(
+      DrawerListItem(
         index: DrawerIndex.registration,
         labelName: 'Registration - delta',
         icon: const Icon(Icons.app_registration_outlined),
       ),
-      DrawerList(
+      DrawerListItem(
         index: DrawerIndex.login,
         labelName: 'Login - delta',
         icon: const Icon(Icons.login),
       ),
-      DrawerList(
+      DrawerListItem(
         index: DrawerIndex.newPost,
         labelName: 'New Post - delta/temp',
         icon: const Icon(Icons.create),
       ),
-      DrawerList(
+      DrawerListItem(
         index: DrawerIndex.home,
         labelName: 'Home',
         icon: const Icon(Icons.home),
       ),
-      DrawerList(
+      DrawerListItem(
         index: DrawerIndex.help,
         labelName: 'Help',
         isAssetsImage: true,
         imageName: 'assets/images/supportIcon.png',
       ),
-      DrawerList(
+      DrawerListItem(
         index: DrawerIndex.feedBack,
         labelName: 'FeedBack',
         icon: const Icon(Icons.help),
       ),
-      DrawerList(
+      DrawerListItem(
         index: DrawerIndex.invite,
         labelName: 'Invite Friend',
         icon: const Icon(Icons.group),
       ),
-      DrawerList(
+      DrawerListItem(
         index: DrawerIndex.share,
         labelName: 'Rate the app',
         icon: const Icon(Icons.share),
       ),
-      DrawerList(
+      DrawerListItem(
         index: DrawerIndex.about,
         labelName: 'About Us',
         icon: const Icon(Icons.info),
@@ -185,7 +187,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
     print('Doing Something...'); // Print to console.
   }
 
-  Widget inkWell(DrawerList listData) {
+  Widget inkWell(DrawerListItem listData) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -307,20 +309,20 @@ void onSignOutTapped() {
   //TODO signOut action
 }
 
-enum DrawerIndex { home, postList, feedBack, help, share, about, registration, invite, login, newPost }
-
-class DrawerList {
-  DrawerList({
-    this.isAssetsImage = false,
-    this.labelName = '',
-    this.icon,
-    this.index,
-    this.imageName = '',
-  });
-
-  String labelName;
-  Icon? icon;
-  bool isAssetsImage;
-  String imageName;
-  DrawerIndex? index;
-}
+// enum DrawerIndex { home, postList, feedBack, help, share, about, registration, invite, login, newPost }
+//
+// class DrawerList {
+//   DrawerList({
+//     this.isAssetsImage = false,
+//     this.labelName = '',
+//     this.icon,
+//     this.index,
+//     this.imageName = '',
+//   });
+//
+//   String labelName;
+//   Icon? icon;
+//   bool isAssetsImage;
+//   String imageName;
+//   DrawerIndex? index;
+// }
