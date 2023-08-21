@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:open_hands/app/common/Components.dart';
 import 'package:open_hands/app/domain/post_model.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
@@ -38,6 +39,8 @@ class PostDetail extends StatelessWidget {
       // color: AppTheme.creamColor,
     );
 
+    var formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
+
     return Container(
       // padding: const EdgeInsets.only(top: 18, bottom: 18, left: 18, right: 18),
       padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
@@ -64,7 +67,8 @@ class PostDetail extends StatelessWidget {
           const Text('Created by', textAlign: TextAlign.left, style: title),
           Text(postModel.byUser, textAlign: TextAlign.left, style: textStyle),
           const SizedBox(height: 10),
-          Text('Created on ${postModel.dateTime}', textAlign: TextAlign.left, style: textStyle),
+          const Text('Created on', textAlign: TextAlign.left, style: title),
+          Text(formatter.format(postModel.dateTime), textAlign: TextAlign.left, style: textStyle),
           // ),
           // TODO If it is not created by current user, show 'Request' button
           // TODO On Click of 'Request', 1 Option 1 - show - "login to request this item"

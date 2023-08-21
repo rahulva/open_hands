@@ -29,7 +29,6 @@
 #10.xx ??Implement Search/filter feature??
 #10.xx ??Implement Like feature??
 
-
 #11 View Post
 #11.01 Posts List View - navigate to Post Detail Page (dummy Data) - DONE
 #11.02 Posts Detail View UI - Display images - 50%
@@ -37,8 +36,6 @@
     Make button available conditionally
 #11.04 Post Detail View UI - Improve look and feel/Teaming -
 #11.xx Post Detail View - Real data integration
-
-
 
 #12 My Posts
 #12.01 My Posts list View
@@ -52,6 +49,10 @@
 #14 My Contacts/Messages
 #14.01 Contacts/Message List Page
 #14.02 Contacts/Message view, delete|close(mark as read)
+
+Final Theming
+#20.XX Improve Post detail page look and feel
+#20.XX Improve Post List page look, with image
 
 About us
 Help
