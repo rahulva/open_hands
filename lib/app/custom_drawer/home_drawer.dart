@@ -26,9 +26,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
   void setDrawerListArray() {
     drawerList = <DrawerListItem>[
       DrawerListItem(
-        index: DrawerIndex.postList,
-        labelName: 'Posts Home',
-        icon: const Icon(Icons.post_add),
+        index: DrawerIndex.home,
+        labelName: 'Home',
+        icon: const Icon(Icons.home),
       ),
       DrawerListItem(
         index: DrawerIndex.registration,
@@ -44,11 +44,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
         index: DrawerIndex.newPost,
         labelName: 'New Post - delta/temp',
         icon: const Icon(Icons.create),
-      ),
-      DrawerListItem(
-        index: DrawerIndex.home,
-        labelName: 'Home',
-        icon: const Icon(Icons.home),
       ),
       DrawerListItem(
         index: DrawerIndex.help,
@@ -75,6 +70,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
         index: DrawerIndex.about,
         labelName: 'About Us',
         icon: const Icon(Icons.info),
+      ),
+      DrawerListItem(
+        index: DrawerIndex.hotelHome,
+        labelName: 'Hotel - Temp',
+        icon: const Icon(Icons.hotel),
       ),
     ];
   }

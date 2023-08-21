@@ -25,7 +25,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
 
   @override
   void initState() {
-    drawerIndex = DrawerIndex.postList;
+    drawerIndex = DrawerIndex.home;
     screenView = const PostHomeListView();
     super.initState();
   }
@@ -60,11 +60,6 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       switch (drawerIndex) {
         case DrawerIndex.home:
           setState(() {
-            screenView = const HotelHomeScreen();
-          });
-          break;
-        case DrawerIndex.postList:
-          setState(() {
             screenView = const PostHomeListView();
           });
           break;
@@ -96,6 +91,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         case DrawerIndex.newPost:
           setState(() {
             screenView = const CreatePostView();
+          });
+          break;
+        case DrawerIndex.hotelHome:
+          setState(() {
+            screenView = const HotelHomeScreen();
           });
           break;
         default:

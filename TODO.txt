@@ -15,6 +15,7 @@
 #06 User Signup
 #06.01 Registration Action - Navigate to Login Page
 #06.XX Registration - Validation
+ Explore Single sign-on for registration
 
 #09 Add New Post
 #09.01 Add New Post UI v2 - description is a text area

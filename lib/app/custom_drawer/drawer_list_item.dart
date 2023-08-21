@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/item_post/post_home_list_view.dart';
 
-enum DrawerIndex { home, postList, feedBack, help, share, about, registration, invite, login, newPost }
+enum DrawerIndex {
+  home,
+  myPosts, // TODO introduce pages, navigation
+  messages, // TODO introduce pages, navigation
+  feedBack,
+  help,
+  share,
+  about,
+  invite,
+
+  registration,
+  login,
+  newPost,
+  hotelHome,
+}
 
 class DrawerListItem {
   DrawerListItem({
