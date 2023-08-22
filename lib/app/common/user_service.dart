@@ -2,36 +2,35 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:open_hands/app/domain/user_model.dart';
+import 'constants.dart';
 
 class UserService {
-  // 'Context-Type': 'application/json; charset=UTF-8'
-
-  static const Map<String, String> header = {
-    'Content-type': 'application/json',
-    'Accept': 'application/json',
-  };
-  static const String uri = "http://10.0.2.2:8080/users";
-
-  late final UserModel? loggedInUser;
-
+  UserData? loggedInUser;
   static final UserService _userService = UserService();
 
   static UserService get() {
     return _userService;
   }
 
-  Future<http.Response> createUser(UserModel userModel) async {
-    print("Create User $userModel");
-    return http.post(Uri.parse(uri), headers: header, body: jsonEncode(userModel));
+  Future<http.Response> createUser(UserData userData) async {
+    print("Create User $userData");
+    return http.post(Uri.parse(userUrl), headers: header, body: jsonEncode(userData));
   }
 
-  Future<http.Response> userLogin(UserModel userModel) async {
-    print("User Login $userModel");
-    var loginModel = <String, String>{'email': userModel.email, 'password': userModel.password};
-    return http.post(Uri.parse("$uri/login"), headers: header, body: jsonEncode(loginModel));
+  Future<http.Response> userLogin(LoginData loginData) async {
+    print("User Login $loginData");
+    var loginModel = 'email=${loginData.email}&password=${loginData.password}';
+    return http.post(Uri.parse("$userUrl/login"),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: loginModel);
   }
 
   Future<http.Response> getUsers() async {
-    return http.get(Uri.parse(uri), headers: header);
+    return http.get(Uri.parse(userUrl), headers: header);
   }
+}
+
+class LoginData {
+  String email, password;
+
+  LoginData(this.email, this.password);
 }

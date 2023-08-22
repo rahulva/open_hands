@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_hands/app/common/app_text_field.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
 class Components {
@@ -135,5 +136,28 @@ class Components {
             )),
       ),
     );
+  }
+}
+
+void showSuccessMessage(BuildContext context, String message) {
+  final snackBar = SnackBar(content: Text(message), backgroundColor: Colors.green);
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
+void showErrorMessage(BuildContext context, String message) {
+  final snackBar = SnackBar(content: Text(message), backgroundColor: Colors.red);
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
+Container buildField(String hintText, var controller, String? Function(String?)? validator) {
+  return Container(
+    decoration: const BoxDecoration(boxShadow: []),
+    child: AppTextField(hintText: hintText, controller: controller, validator: validator),
+  );
+}
+
+void clearFields(List fields) {
+  for (var element in fields) {
+    element.clear();
   }
 }

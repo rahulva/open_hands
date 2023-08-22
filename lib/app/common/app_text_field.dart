@@ -5,7 +5,7 @@ class AppTextField extends StatelessWidget {
   final TextStyle? hintStyle;
   final Icon? icon;
   final Function? onChanged;
-  final TextEditingController? editingController;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
 
   const AppTextField({
@@ -13,7 +13,7 @@ class AppTextField extends StatelessWidget {
     this.hintStyle,
     this.hintText,
     this.icon,
-    required this.editingController,
+    required this.controller,
     this.onChanged,
     this.validator,
   });
@@ -23,10 +23,7 @@ class AppTextField extends StatelessWidget {
     return SizedBox(
       height: 70,
       child: TextFormField(
-        onChanged: (value) {
-          onChanged!(value);
-        },
-        controller: editingController,
+        controller: controller,
         decoration: buildInputDecoration(),
         validator: validator,
       ),

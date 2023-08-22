@@ -1,13 +1,13 @@
-class UserModel {
-  String firsName;
+class UserData {
+  String firstName;
   String lastName;
   String email;
   String password;
 
-  UserModel(this.firsName, this.lastName, this.email, this.password);
+  UserData(this.firstName, this.lastName, this.email, this.password);
 
   Map toJson() => {
-        'firsName': firsName,
+        'firstName': firstName,
         'lastName': lastName,
         'email': email,
         'password': password,
@@ -15,6 +15,6 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel{firsName: $firsName, lastName: $lastName, email: $email, password: $password}';
+    return 'UserData{firstName: $firstName, lastName: $lastName, email: $email, password: $password}';
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/common/Components.dart';
+import 'package:open_hands/app/common/components.dart';
 import 'package:open_hands/app/common/app_text_field.dart';
 import 'package:open_hands/app/common/post_service.dart';
 import 'package:open_hands/app/custom_drawer/navigation_home_screen.dart';
@@ -62,7 +62,7 @@ class _PostCreateState extends State<PostCreate> {
   Container buildField({var onChanged, required String hintText, required TextEditingController controller}) {
     return Container(
       decoration: const BoxDecoration(boxShadow: []),
-      child: AppTextField(onChanged: onChanged, hintText: hintText, editingController: controller),
+      child: AppTextField(onChanged: onChanged, hintText: hintText, controller: controller),
     );
   }
 
@@ -83,11 +83,15 @@ class _PostCreateState extends State<PostCreate> {
     print("Request Completed!! ${response.statusCode}");
 
     if (response.statusCode == 201) {
-      showSuccessMessage('Creation Success');
+      if (context.mounted) {
+        showSuccessMessage(context, 'Creation Success');
+      }
       clearFields();
       navigateToListPage();
     } else {
-      showErrorMessage(context, 'Creation Error');
+      if (context.mounted) {
+        showErrorMessage(context, 'Creation Error');
+      }
       throw Exception('Failed to create album.');
     }
   }
@@ -98,18 +102,6 @@ class _PostCreateState extends State<PostCreate> {
     //     (Route<dynamic> route) => false);
     final route = MaterialPageRoute(builder: (BuildContext context) => const NavigationHomeScreen());
     Navigator.of(context).push(route); //, (Route<dynamic> route) => false
-  }
-
-  void showSuccessMessage(String message) {
-    final snackBar = SnackBar(content: Text(message), backgroundColor: Colors.lightGreenAccent);
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  static void showErrorMessage(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message), backgroundColor: Colors.red);
-    if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
   }
 
   void clearFields() {

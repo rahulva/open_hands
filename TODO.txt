@@ -4,23 +4,31 @@
 #03 User Signup
 #03 Registration UI (integrated with theme) DONE
 #03.01 Registration Action - Navigate to Login Page
-#03.XX Registration - Validation
+#03.01 Registration Action - Real backend integration - DONE
+#03.XX Registration - Validation - DONE
  Explore Single sign-on for registration
 
 04# Login/Logout Management
 #04 Login Page - UI DONE
-#04.01 Login Page - Action 1 - Authenticate (http)
-#04.02 Login Page - Action 2 - Redirect to Home/MyPosts with ?My profile?, My Posts, Contacts; Change login to logout
-#04.03 Implement Logout - Remove all above, change logout to login, nullify the logged-in user
-#04.xx Login Page - Validation
+#04.01 Login Page - Action 1 - Authenticate (http) -
+#04.01 Login Page - Action 1 - Authenticate, integrate to real backend - done
+#04.02 Login Page - Post login action - redirect to Home page - DONE
+#04.xx Login Page - Validation - DONE
+
+#04.02 Login Page - Post login action - Enable 'My Requests'/'Messages (Sent/received)'
+#04.02 Login Page - Post login action - Enable 'My Posts'/'Messages (Sent/received)'
+#04.02 Login Page - Post login action - Enable 'Logout function' {Implement Logout - Remove all above, change logout to login, nullify the logged-in user}
+#04.02 Login Page - Post login action - Enable 'My Profile' functions (update details, etc)
 
 #09 Add New Post
 #09 Add New Post UI v1 - initial UI DONE
-#09 Add New Post Action - Add to dummy data [WIP]
+#09 Add New Post function - Add to dummy data DONE
+#09.03 Add New Post UI v2 - Validations (desc 10-200, Name, 5-50, image 1-10)
+
 #09.01 Add New Post UI v2 - description is a text area
 #09.02 Add New Post UI v2 - category, SubCategory a dropdown
 #09.03 Add New Post UI v2 - images is a image picker/camara integration
-#09.03 Add New Post UI v2 - Validations (desc 10-200, Name, 5-50, image 1-10)
+
 #09.03 Add New Post Action - Add real data
 
 #10 Post List View (Home)
@@ -44,7 +52,11 @@
 #12.04 My Post Detail Page with Delete operation integration
 
 #13 Contact Page
-#13.01 Contact Request Page UI
+#13.01 Contact Request Page UI - DONE
+#13.01 Contact Request Page UI Dummy function - DONE
+#13.01 Contact Request Page UI - Validation -
+#13.01 Contact Request Page backend implementation, validation -
+#13.01 Contact Request Page - Real backend integration -
 
 #14 My Contacts/Messages
 #14.01 Contacts/Message List Page
@@ -53,6 +65,9 @@
 Final Theming
 #20.XX Improve Post detail page look and feel
 #20.XX Improve Post List page look, with image
+
+// TODO Add mobile no, filed, validation, icon create_request.dart
+TODO If a post is requested by a person then, should not allow to request again
 
 About us
 Help

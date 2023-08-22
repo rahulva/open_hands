@@ -35,7 +35,7 @@ class PostListItem extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => PostDetail(
-                        postModel: postModel,
+                        postData: postModel,
                         key: Key('${postModel.id}'),
                       ),
                     ),
