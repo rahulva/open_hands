@@ -4,7 +4,7 @@ import 'package:open_hands/app/common/post_service.dart';
 import 'package:open_hands/app/item_post/post_list_item.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
-import '../domain/post_model.dart';
+import '../domain/post_data.dart';
 
 class PostList extends StatefulWidget {
   const PostList({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now().add(const Duration(days: 5));
 
-  List<PostModel> posts = List.empty();
+  List<PostData> posts = List.empty();
 
   @override
   void initState() {
@@ -186,7 +186,7 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
 
             return PostListItem(
               callback: () {},
-              postModel: posts[index],
+              postData: posts[index],
               animation: animation,
               animationController: animationController!,
             );
@@ -318,7 +318,7 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
 
         return PostListItemView(
           callback: () {},
-          postModel: posts[index],
+          postData: posts[index],
           animation: animation,
           animationController: animationController!,
         );

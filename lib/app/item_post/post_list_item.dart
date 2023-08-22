@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/domain/post_model.dart';
+import 'package:open_hands/app/domain/post_data.dart';
 import 'package:open_hands/app/item_post/post_detail.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
 class PostListItem extends StatelessWidget {
   const PostListItem({
     Key? key,
-    required this.postModel,
+    required this.postData,
     this.animationController,
     this.animation,
     this.callback,
   }) : super(key: key);
 
   final VoidCallback? callback;
-  final PostModel postModel;
+  final PostData postData;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
@@ -35,8 +35,8 @@ class PostListItem extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => PostDetail(
-                        postData: postModel,
-                        key: Key('${postModel.id}'),
+                        postData: postData,
+                        key: Key('${postData.id}'),
                       ),
                     ),
                   );
@@ -185,16 +185,16 @@ class PostListItem extends StatelessWidget {
 
   Text attemptText() {
     return Text(
-      // ' ${postModel!.failedAttempts} Attempts',
-      ' ${postModel!.category} Attempts',
+      // ' ${postData!.failedAttempts} Attempts',
+      ' ${postData!.category} Attempts',
       style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
     );
   }
 
   Text distanceText() {
     return Text(
-      // '${postModel!.dist.toStringAsFixed(1)} km to city',
-      'Collection at ${postModel?.location}',
+      // '${postData!.dist.toStringAsFixed(1)} km to city',
+      'Collection at ${postData?.location}',
       overflow: TextOverflow.ellipsis,
       style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
     );
@@ -202,7 +202,7 @@ class PostListItem extends StatelessWidget {
 
   Text mainText() {
     return Text(
-      postModel!.name,
+      postData!.name,
       textAlign: TextAlign.left,
       style: const TextStyle(
         fontWeight: FontWeight.w600,
@@ -222,7 +222,7 @@ class PostListItem extends StatelessWidget {
   Text subText() {
     return Text(
       // wordData!.meaning,
-      postModel!.description,
+      postData!.description,
       style: TextStyle(
         fontSize: 14,
         color: Colors.grey.withOpacity(0.8),

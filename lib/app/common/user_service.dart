@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:open_hands/app/domain/user_model.dart';
+import 'package:open_hands/app/domain/user_data.dart';
 import 'constants.dart';
 
 class UserService {

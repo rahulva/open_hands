@@ -1,6 +1,6 @@
 import 'dart:core';
 
-class PostModel {
+class PostData {
   int? id;
   late String name;
   late String description;
@@ -11,14 +11,14 @@ class PostModel {
   late DateTime dateTime;
   late String byUser;
 
-  PostModel.empty() : byUser = 'current user';
+  PostData.empty() : byUser = 'current user';
 
-  PostModel(this.id, this.name, this.description, this.category, this.subCategory, this.location, this.images,
+  PostData(this.id, this.name, this.description, this.category, this.subCategory, this.location, this.images,
       this.dateTime, this.byUser);
 
   @override
   String toString() {
-    return 'PostModel{id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, location: $location, images: $images, dateTime: $dateTime, byUser: $byUser}';
+    return 'PostData{id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, location: $location, images: $images, dateTime: $dateTime, byUser: $byUser}';
   }
 
   Map toJson() => {

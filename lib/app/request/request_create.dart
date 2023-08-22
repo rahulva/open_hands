@@ -3,16 +3,16 @@ import 'package:http/http.dart';
 import 'package:open_hands/app/common/app_text_area_field.dart';
 import 'package:open_hands/app/common/app_text_field.dart';
 import 'package:open_hands/app/common/request_service.dart';
-import 'package:open_hands/app/domain/post_model.dart';
+import 'package:open_hands/app/domain/post_data.dart';
 import 'package:open_hands/app/domain/request_data.dart';
-import 'package:open_hands/app/domain/user_model.dart';
+import 'package:open_hands/app/domain/user_data.dart';
 import 'package:uuid/uuid.dart';
 
 import '../common/components.dart';
 import '../common/validations.dart';
 
 class RequestCreate extends StatelessWidget {
-  final PostModel postData;
+  final PostData postData;
   final UserData currentUser;
   final uuid = const Uuid();
 

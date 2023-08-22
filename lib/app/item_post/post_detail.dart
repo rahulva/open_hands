@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:open_hands/app/common/Components.dart';
 import 'package:open_hands/app/common/user_service.dart';
-import 'package:open_hands/app/domain/post_model.dart';
-import 'package:open_hands/app/domain/user_model.dart';
+import 'package:open_hands/app/domain/post_data.dart';
+import 'package:open_hands/app/domain/user_data.dart';
 import 'package:open_hands/app/profile/user_login_view.dart';
 import 'package:open_hands/app/request/request_create.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 import 'package:open_hands/app/common/image_slider.dart';
 
 class PostDetail extends StatelessWidget {
-  final PostModel postData;
+  final PostData postData;
 
   const PostDetail({required Key key, required this.postData}) : super(key: key);
 

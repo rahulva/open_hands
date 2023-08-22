@@ -6,7 +6,7 @@ import 'package:open_hands/app/common/components.dart';
 import 'package:open_hands/app/common/user_service.dart';
 import 'package:open_hands/app/common/validations.dart';
 import 'package:open_hands/app/custom_drawer/navigation_home_screen.dart';
-import 'package:open_hands/app/domain/user_model.dart';
+import 'package:open_hands/app/domain/user_data.dart';
 import 'package:open_hands/app/hotel_booking/hotel_home_screen.dart';
 import 'package:open_hands/app/profile/user_registration_view.dart';
 

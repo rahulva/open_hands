@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/domain/post_model.dart';
+import 'package:open_hands/app/domain/post_data.dart';
 
-Widget imageSlider({required PostModel postData, required BuildContext context}) {
+Widget imageSlider({required PostData postData, required BuildContext context}) {
   // AuthenticationNotifer _auth =
   // Provider.of<AuthenticationNotifer>(context, listen: true);
   return SizedBox(

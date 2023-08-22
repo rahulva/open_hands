@@ -5,7 +5,7 @@ import 'package:open_hands/app/common/components.dart';
 import 'package:open_hands/app/common/app_text_field.dart';
 import 'package:open_hands/app/common/post_service.dart';
 import 'package:open_hands/app/custom_drawer/navigation_home_screen.dart';
-import 'package:open_hands/app/domain/post_model.dart';
+import 'package:open_hands/app/domain/post_data.dart';
 
 class PostCreate extends StatefulWidget {
   const PostCreate({super.key});
@@ -67,7 +67,7 @@ class _PostCreateState extends State<PostCreate> {
   }
 
   Future<void> doOnSave() async {
-    var postModel = PostModel(
+    var postData = PostData(
         Random().nextInt(500),
         _nameController.text,
         _descController.text,
@@ -78,8 +78,8 @@ class _PostCreateState extends State<PostCreate> {
         DateTime.now(),
         'Current User');
 
-    print("on save $postModel");
-    var response = await PostService.get().createPost(postModel).whenComplete(() => print("Request Completed!!"));
+    print("on save $postData");
+    var response = await PostService.get().createPost(postData).whenComplete(() => print("Request Completed!!"));
     print("Request Completed!! ${response.statusCode}");
 
     if (response.statusCode == 201) {
