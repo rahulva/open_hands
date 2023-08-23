@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:open_hands/app/domain/request_data.dart';
 import 'package:uuid/uuid.dart';
 
-import 'constants.dart';
+import '../common/constants.dart';
 
 class RequestService {
   var uuid = const Uuid();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/common/components.dart';
-import 'package:open_hands/app/common/user_service.dart';
+import 'package:open_hands/app/components/components.dart';
+import 'package:open_hands/app/services/user_service.dart';
 import 'package:open_hands/app/common/validations.dart';
 import 'package:open_hands/app/domain/user_data.dart';
 import 'package:open_hands/app/profile/user_login_view.dart';

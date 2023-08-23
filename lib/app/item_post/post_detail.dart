@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:open_hands/app/common/Components.dart';
-import 'package:open_hands/app/common/user_service.dart';
+import 'package:open_hands/app/components/components.dart';
+import 'package:open_hands/app/components/image_slider.dart';
 import 'package:open_hands/app/domain/post_data.dart';
-import 'package:open_hands/app/domain/user_data.dart';
 import 'package:open_hands/app/profile/user_login_view.dart';
 import 'package:open_hands/app/request/request_create.dart';
+import 'package:open_hands/app/services/user_service.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
-import 'package:open_hands/app/common/image_slider.dart';
 
 class PostDetail extends StatelessWidget {
   final PostData postData;
@@ -21,7 +20,7 @@ class PostDetail extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Components.appBarClosable(context, postData.name),
+            Components.appBarClosable(context, postData.title),
             imageSlider(postData: postData, context: context),
             postContent(context),
           ],
@@ -83,7 +82,7 @@ class PostDetail extends StatelessWidget {
           Text(postData.location, textAlign: TextAlign.left, style: textStyle),
           const SizedBox(height: 10),
           const Text('Created by', textAlign: TextAlign.left, style: title),
-          Text(postData.byUser, textAlign: TextAlign.left, style: textStyle),
+          Text(postData.createdBy, textAlign: TextAlign.left, style: textStyle),
           const SizedBox(height: 10),
           const Text('Created on', textAlign: TextAlign.left, style: title),
           Text(formatter.format(postData.dateTime), textAlign: TextAlign.left, style: textStyle),

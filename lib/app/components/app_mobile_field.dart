@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/common/app_text_field.dart';
+import 'package:open_hands/app/components/app_text_field.dart';
 import 'package:phone_form_field/phone_form_field.dart';
-import 'validations.dart';
+import '../common/validations.dart';
 
 class AppMobileField extends AppTextField {
   final PhoneController phoneController;

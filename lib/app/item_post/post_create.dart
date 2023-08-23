@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/common/components.dart';
-import 'package:open_hands/app/common/app_text_field.dart';
-import 'package:open_hands/app/common/post_service.dart';
+import 'package:open_hands/app/components/components.dart';
+import 'package:open_hands/app/components/app_text_field.dart';
+import 'package:open_hands/app/services/post_service.dart';
 import 'package:open_hands/app/custom_drawer/navigation_home_screen.dart';
 import 'package:open_hands/app/domain/post_data.dart';
+import '../common/validations.dart';
 
 class PostCreate extends StatefulWidget {
   const PostCreate({super.key});
@@ -39,12 +40,16 @@ class _PostCreateState extends State<PostCreate> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppTextField(30, hintText: 'Name', controller: _nameController),
-                    AppTextField(100, controller: _descController, hintText: 'Description'),
-                    AppTextField(50, controller: _categoryController, hintText: 'Category'),
-                    AppTextField(50, controller: _subCategoryController, hintText: 'Sub Category'),
-                    AppTextField(100, controller: _locationController, hintText: 'Location or Address'),
-                    AppTextField(100, controller: _imagesController, hintText: 'Images'),
+                    AppTextField(30, hintText: 'Name', controller: _nameController, validator: validatePostTitle),
+                    AppTextField(100,
+                        hintText: 'Description', controller: _descController, validator: validatePostDescription),
+                    AppTextField(50,
+                        hintText: 'Category', controller: _categoryController, validator: validateNeedValue),
+                    AppTextField(50,
+                        hintText: 'Sub Category', controller: _subCategoryController, validator: validateNeedValue),
+                    AppTextField(100,
+                        hintText: 'Location or Address', controller: _locationController, validator: validateNeedValue),
+                    AppTextField(100, hintText: 'Images', controller: _imagesController),
                     Padding(
                       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 16),
                       child: Components.button('Post', doOnSave),

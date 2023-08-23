@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:open_hands/app/domain/user_data.dart';
-import 'constants.dart';
+import '../common/constants.dart';
 
 class UserService {
   UserData? loggedInUser;

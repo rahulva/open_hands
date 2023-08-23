@@ -16,12 +16,15 @@ class NavigationHomeScreen extends StatefulWidget {
   const NavigationHomeScreen({super.key});
 
   @override
-  State<NavigationHomeScreen> createState() => _NavigationHomeScreenState();
+  State<NavigationHomeScreen> createState() {
+    return _NavigationHomeScreenState();
+  }
 }
 
 class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   Widget? screenView;
   DrawerIndex? drawerIndex;
+  bool loggedIn = false;
 
   @override
   void initState() {
@@ -48,6 +51,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
             },
             /* we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc... */
             screenView: screenView,
+            logginState: true,
           ),
         ),
       ),
@@ -96,6 +100,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         case DrawerIndex.hotelHome:
           setState(() {
             screenView = const HotelHomeScreen();
+          });
+          break;
+        case DrawerIndex.myPosts:
+          setState(() {
+            screenView = const PostList();
           });
           break;
         default:

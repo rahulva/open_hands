@@ -2,34 +2,34 @@ import 'dart:core';
 
 class PostData {
   int? id;
-  late String name;
+  late String title;
   late String description;
   late String category;
   late String subCategory;
   late String location;
   late List<String>? images = List.empty(growable: true);
   late DateTime dateTime;
-  late String byUser;
+  late String createdBy;
 
-  PostData.empty() : byUser = 'current user';
+  PostData.empty() : createdBy = 'current user';
 
-  PostData(this.id, this.name, this.description, this.category, this.subCategory, this.location, this.images,
-      this.dateTime, this.byUser);
+  PostData(this.id, this.title, this.description, this.category, this.subCategory, this.location, this.images,
+      this.dateTime, this.createdBy);
 
   @override
   String toString() {
-    return 'PostData{id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, location: $location, images: $images, dateTime: $dateTime, byUser: $byUser}';
+    return 'PostData{id: $id, title: $title, description: $description, category: $category, subCategory: $subCategory, location: $location, images: $images, dateTime: $dateTime, createdBy: $createdBy}';
   }
 
   Map toJson() => {
         'id': id,
-        'name': name,
+        'title': title,
         'description': description,
         'category': category,
         'subCategory': subCategory,
         'location': location,
         'images': images,
         'dateTime': dateTime.toString(),
-        'byUser': byUser,
+        'createdBy': createdBy,
       };
 }

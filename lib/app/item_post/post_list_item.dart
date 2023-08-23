@@ -202,7 +202,7 @@ class PostListItem extends StatelessWidget {
 
   Text mainText() {
     return Text(
-      postData!.name,
+      postData!.title,
       textAlign: TextAlign.left,
       style: const TextStyle(
         fontWeight: FontWeight.w600,

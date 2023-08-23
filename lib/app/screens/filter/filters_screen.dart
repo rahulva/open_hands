@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/common/Components.dart';
+import 'package:open_hands/app/components/components.dart';
 import 'package:open_hands/app/screens/filter/model/popular_filter_list.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 

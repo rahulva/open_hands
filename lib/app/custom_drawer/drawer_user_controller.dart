@@ -6,6 +6,7 @@ import 'drawer_list_item.dart';
 
 class DrawerUserController extends StatefulWidget {
   const DrawerUserController({
+    required bool logginState,
     Key? key,
     this.drawerWidth = 250,
     this.onDrawerCall,
@@ -122,7 +123,7 @@ class _DrawerUserControllerState extends State<DrawerUserController> with Ticker
                           try {
                             widget.onDrawerCall!(indexType);
                           } catch (e) {}
-                        },
+                        }, loginState: true, // TODO pass the login state
                       ),
                     );
                   },

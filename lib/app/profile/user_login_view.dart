@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:open_hands/app/common/components.dart';
-import 'package:open_hands/app/common/user_service.dart';
+import 'package:open_hands/app/components/components.dart';
+import 'package:open_hands/app/services/user_service.dart';
 import 'package:open_hands/app/common/validations.dart';
 import 'package:open_hands/app/custom_drawer/navigation_home_screen.dart';
 import 'package:open_hands/app/domain/user_data.dart';

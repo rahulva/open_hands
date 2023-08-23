@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:open_hands/app/common/app_mobile_field.dart';
-import 'package:open_hands/app/common/app_text_area_field.dart';
-import 'package:open_hands/app/common/app_text_field.dart';
-import 'package:open_hands/app/common/request_service.dart';
+import 'package:open_hands/app/components/app_mobile_field.dart';
+import 'package:open_hands/app/components/app_text_area_field.dart';
+import 'package:open_hands/app/components/app_text_field.dart';
+import 'package:open_hands/app/services/request_service.dart';
 import 'package:open_hands/app/domain/post_data.dart';
 import 'package:open_hands/app/domain/request_data.dart';
 import 'package:open_hands/app/domain/user_data.dart';
 import 'package:uuid/uuid.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
-import '../common/components.dart';
+import '../components/components.dart';
 import '../common/validations.dart';
 
 class RequestCreate extends StatelessWidget {
@@ -34,7 +34,7 @@ class RequestCreate extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Components.appBar(context, 'Request item - ${postData.id} ${postData.name}'),
+            Components.appBar(context, 'Request item - ${postData.id} ${postData.title}'),
             Padding(
               padding: const EdgeInsets.only(top: 18, bottom: 18, left: 18, right: 18),
               child: Form(
@@ -78,7 +78,7 @@ class RequestCreate extends StatelessWidget {
     }
 
     var requestData = RequestData(postData.id!, uuid.v1(), _nameController.text, _emailController.text, phoneNo,
-        _messageController.text, postData.byUser, DateTime.now());
+        _messageController.text, postData.createdBy, DateTime.now());
     print("on save $requestData");
     var response = await RequestService.get().create(requestData).whenComplete(() => print("Request Completed!!"));
     postResponseAction(response, context);

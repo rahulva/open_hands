@@ -1,16 +1,19 @@
 import 'package:phone_form_field/phone_form_field.dart';
 
 String? validatePassword(value) {
-  if (value == null || value.isEmpty) {
-    return 'Please enter your Password';
+  var msg = validateNeedValue(value);
+  if (msg != null) {
+    return msg;
   }
   return null;
 }
 
 String? validateEmail(value) {
-  if (value == null || value.isEmpty) {
-    return 'Please enter your email';
+  var msg = validateNeedValue(value);
+  if (msg != null) {
+    return msg;
   }
+
   if (value.length < 10) {
     return 'Should be at least 10 characters';
   }
@@ -21,8 +24,9 @@ String? validateEmail(value) {
 }
 
 String? validateTelephone(value) {
-  if (value == null || value.isEmpty) {
-    return 'Please enter contact no';
+  var msg = validateNeedValue(value);
+  if (msg != null) {
+    return msg;
   }
 
   if (value.length < 10) {
@@ -45,8 +49,9 @@ PhoneNumberInputValidator? getValidator() {
 }
 
 String? validateFirstName(value) {
-  if (value == null || value.isEmpty) {
-    return 'Please enter First Name';
+  var msg = validateNeedValue(value);
+  if (msg != null) {
+    return msg;
   }
   if (value.length > 50) {
     return 'Can be maximum of 50 characters';
@@ -55,8 +60,9 @@ String? validateFirstName(value) {
 }
 
 String? validateLastName(value) {
-  if (value == null || value.isEmpty) {
-    return 'Please enter Last Name';
+  var msg = validateNeedValue(value);
+  if (msg != null) {
+    return msg;
   }
   if (value.length > 50) {
     return 'Can be maximum of 50 characters';
@@ -65,14 +71,50 @@ String? validateLastName(value) {
 }
 
 String? validateMessage(value) {
-  if (value == null || value.isEmpty) {
-    return 'Please enter your message';
+  var msg = validateNeedValue(value);
+  if (msg != null) {
+    return msg;
   }
   if (value.length < 10) {
     return 'Should be at least 10 characters';
   }
   if (value.length > 300) {
     return 'max 300';
+  }
+  return null;
+}
+
+String? validatePostTitle(value) {
+  var msg = validateNeedValue(value);
+  if (msg != null) {
+    return msg;
+  }
+  if (value.length < 5) {
+    return 'Should be at least 5 characters';
+  }
+  if (value.length > 80) {
+    return 'max 80';
+  }
+  return null;
+}
+
+String? validatePostDescription(value) {
+  var msg = validateNeedValue(value);
+  if (msg != null) {
+    return msg;
+  }
+  if (value.length < 10) {
+    return 'Should be at least 10 characters';
+  }
+  if (value.length > 300) {
+    return 'max 300';
+  }
+  return null;
+}
+
+String? validateNeedValue(value) {
+  if (value == null || value.isEmpty) {
+    return '';
   }
   return null;
 }

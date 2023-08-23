@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:open_hands/app/common/app_text_field.dart';
+import 'package:open_hands/app/components/app_text_field.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
 class Components {
