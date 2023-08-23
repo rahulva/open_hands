@@ -18,7 +18,8 @@ class PostData {
 
   @override
   String toString() {
-    return 'PostData{id: $id, title: $title, description: $description, category: $category, subCategory: $subCategory, location: $location, images: $images, dateTime: $dateTime, createdBy: $createdBy}';
+    return 'PostData{id: $id, title: $title, description: $description, category: $category, subCategory: $subCategory'
+        ', location: $location, images: $images, dateTime: $dateTime, createdBy: $createdBy}';
   }
 
   Map toJson() => {

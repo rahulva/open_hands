@@ -5,8 +5,8 @@ import 'package:open_hands/app/theme/base_theme.dart';
 import 'drawer_list_item.dart';
 
 class DrawerUserController extends StatefulWidget {
-  const DrawerUserController({
-    required bool logginState,
+  const DrawerUserController(
+    this.authenticated, {
     Key? key,
     this.drawerWidth = 250,
     this.onDrawerCall,
@@ -17,6 +17,7 @@ class DrawerUserController extends StatefulWidget {
     this.screenIndex,
   }) : super(key: key);
 
+  final bool authenticated;
   final double drawerWidth;
   final Function(DrawerIndex)? onDrawerCall;
   final Widget? screenView;
@@ -114,17 +115,7 @@ class _DrawerUserControllerState extends State<DrawerUserController> with Ticker
                     return Transform(
                       //transform we use for the stable drawer  we, not need to move with scroll view
                       transform: Matrix4.translationValues(scrollController!.offset, 0.0, 0.0),
-                      child: HomeDrawer(
-                        /*below is simplification of - widget.screenIndex == null ? DrawerIndex.HOME : widget.screenIndex,*/
-                        screenIndex: widget.screenIndex ?? DrawerIndex.home,
-                        iconAnimationController: iconAnimationController,
-                        callBackIndex: (DrawerIndex indexType) {
-                          onDrawerClick();
-                          try {
-                            widget.onDrawerCall!(indexType);
-                          } catch (e) {}
-                        }, loginState: true, // TODO pass the login state
-                      ),
+                      child: buildHomeDrawer(),
                     );
                   },
                 ),
@@ -189,6 +180,21 @@ class _DrawerUserControllerState extends State<DrawerUserController> with Ticker
           ),
         ),
       ),
+    );
+  }
+
+  HomeDrawer buildHomeDrawer() {
+    return HomeDrawer(
+      widget.authenticated,
+      /*below is simplification of - widget.screenIndex == null ? DrawerIndex.HOME : widget.screenIndex,*/
+      screenIndex: widget.screenIndex ?? DrawerIndex.home,
+      iconAnimationController: iconAnimationController,
+      callBackIndex: (DrawerIndex indexType) {
+        onDrawerClick();
+        try {
+          widget.onDrawerCall!(indexType);
+        } catch (e) {}
+      },
     );
   }
 

@@ -4,13 +4,24 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:open_hands/app/custom_drawer/navigation_home_screen.dart';
+import 'package:open_hands/app/domain/profile.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp, //
     DeviceOrientation.portraitDown
-  ]).then((_) => runApp(const MyApp()));
+  ]).then((_) => runApp(MultiProvider(
+        providers: [
+          ChangeNotifierProvider<Profile>(
+            create: (final BuildContext context) {
+              return Profile();
+            },
+          ),
+        ],
+        child: const MyApp(),
+      )));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,6 +38,24 @@ class MyApp extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
 
+    // return MaterialApp(
+    //   title: 'Open Hands',
+    //   theme: ThemeData(
+    //     //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    //     primarySwatch: Colors.green,
+    //     visualDensity: VisualDensity.adaptivePlatformDensity,
+    //     //   useMaterial3: true,
+    //   ),
+    //   // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    //   // home: UserRegistrationView(),
+    //   home: const NavigationHomeScreen(),
+    // );
+    return Consumer(builder: buildHome);
+  }
+
+  Widget buildHome(final BuildContext context, final Profile profile, final Widget? child) {
+    print('Called - buildHome auth? ${profile.isAuthenticated}');
+    var navigationHomeScreen = NavigationHomeScreen(profile.isAuthenticated);
     return MaterialApp(
       title: 'Open Hands',
       theme: ThemeData(
@@ -35,9 +64,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         //   useMaterial3: true,
       ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      // home: UserRegistrationView(),
-      home: NavigationHomeScreen(),
+      //   // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      //   // home: UserRegistrationView(),
+      home: navigationHomeScreen,
     );
   }
 }

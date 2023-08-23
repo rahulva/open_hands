@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:open_hands/app/domain/profile.dart';
 import 'package:open_hands/app/theme/base_theme.dart';
+import 'package:provider/provider.dart';
 
 import 'drawer_list_item.dart';
+import 'navigation_home_screen.dart';
 
 class HomeDrawer extends StatefulWidget {
-  const HomeDrawer({Key? key, this.screenIndex, this.iconAnimationController, this.callBackIndex, required this.loginState})
-      : super(key: key);
+  HomeDrawer(
+    this.loginState, {
+    Key? key,
+    this.screenIndex,
+    this.iconAnimationController,
+    this.callBackIndex,
+  }) : super(key: key);
 
   final AnimationController? iconAnimationController;
   final DrawerIndex? screenIndex;
   final Function(DrawerIndex)? callBackIndex;
-  final bool loginState;
+  bool loginState;
 
   @override
-  State<HomeDrawer> createState() => _HomeDrawerState(loginState);
+  State<HomeDrawer> createState() => _HomeDrawerState();
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
   List<DrawerListItem>? drawerList;
-  bool loginState;
-
-  _HomeDrawerState(this.loginState);
 
   @override
   void initState() {
-    setDrawerListArray(loginState);
+    print("HomeDrawer: Changing state for ${widget.loginState}");
+    setDrawerListArray(widget.loginState);
     super.initState();
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    print("HomeDrawer: Set state for ${widget.loginState}");
+    super.setState(fn);
   }
 
   void setDrawerListArray(bool loggedIn) {
@@ -58,18 +70,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
       DrawerListItem(index: DrawerIndex.about, labelName: 'About Us', icon: const Icon(Icons.info)),
     ];
 
-    if (loggedIn) {
-      drawerList = drawerListWithUser;
-    } else {
-      drawerList = drawerListNoUser;
-    }
+    drawerList = loggedIn ? drawerListWithUser : drawerListNoUser;
   }
 
   @override
   Widget build(BuildContext context) {
-    var brightness = MediaQuery
-        .of(context)
-        .platformBrightness;
+    var brightness = MediaQuery.of(context).platformBrightness;
     bool isLightMode = brightness == Brightness.light;
     return Scaffold(
       backgroundColor: BaseTheme.notWhite.withOpacity(0.5),
@@ -101,13 +107,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
           ),
           Column(
             children: <Widget>[
-              signOutWidget(),
-              SizedBox(
-                height: MediaQuery
-                    .of(context)
-                    .padding
-                    .bottom,
-              )
+              signOutWidget(context),
+              SizedBox(height: MediaQuery.of(context).padding.bottom),
             ],
           ),
         ],
@@ -151,8 +152,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
           scale: AlwaysStoppedAnimation<double>(1.0 - (widget.iconAnimationController!.value) * 0.2),
           child: RotationTransition(
             turns: AlwaysStoppedAnimation<double>(Tween<double>(begin: 0.0, end: 24.0)
-                .animate(CurvedAnimation(parent: widget.iconAnimationController!, curve: Curves.fastOutSlowIn))
-                .value /
+                    .animate(CurvedAnimation(parent: widget.iconAnimationController!, curve: Curves.fastOutSlowIn))
+                    .value /
                 360),
             child: Container(
               height: 120,
@@ -172,10 +173,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
         );
       },
     );
-  }
-
-  void onTapped() {
-    print('Doing Something...'); // Print to console.
   }
 
   Widget inkWell(DrawerListItem listData) {
@@ -211,13 +208,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   ),
                   listData.isAssetsImage
                       ? Container(
-                    width: 24,
-                    height: 24,
-                    child: Image.asset(listData.imageName,
-                        color: widget.screenIndex == listData.index ? Colors.blue : BaseTheme.nearlyBlack),
-                  )
+                          width: 24,
+                          height: 24,
+                          child: Image.asset(listData.imageName,
+                              color: widget.screenIndex == listData.index ? Colors.blue : BaseTheme.nearlyBlack),
+                        )
                       : Icon(listData.icon?.icon,
-                      color: widget.screenIndex == listData.index ? Colors.blue : BaseTheme.nearlyBlack),
+                          color: widget.screenIndex == listData.index ? Colors.blue : BaseTheme.nearlyBlack),
                   const Padding(
                     padding: EdgeInsets.all(4.0),
                   ),
@@ -233,93 +230,81 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 ],
               ),
             ),
-            widget.screenIndex == listData.index
-                ? AnimatedBuilder(
-              animation: widget.iconAnimationController!,
-              builder: (BuildContext context, Widget? child) {
-                return Transform(
-                  transform: Matrix4.translationValues(
-                      (MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.75 - 64) *
-                          (1.0 - widget.iconAnimationController!.value - 1.0),
-                      0.0,
-                      0.0),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 8),
-                    child: Container(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.75 - 64,
-                      height: 46,
-                      decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.2),
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(0),
-                          topRight: Radius.circular(28),
-                          bottomLeft: Radius.circular(0),
-                          bottomRight: Radius.circular(28),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            )
-                : const SizedBox()
+            widget.screenIndex == listData.index ? animatedBuilder2() : const SizedBox()
           ],
         ),
       ),
     );
   }
 
+  AnimatedBuilder animatedBuilder2() {
+    return AnimatedBuilder(
+      animation: widget.iconAnimationController!,
+      builder: (BuildContext context, Widget? child) {
+        return Transform(
+          transform: Matrix4.translationValues(
+              (MediaQuery.of(context).size.width * 0.75 - 64) * (1.0 - widget.iconAnimationController!.value - 1.0),
+              0.0,
+              0.0),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8, bottom: 8),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.75 - 64,
+              height: 46,
+              decoration: BoxDecoration(
+                color: Colors.blue.withOpacity(0.2),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(0),
+                  topRight: Radius.circular(28),
+                  bottomLeft: Radius.circular(0),
+                  bottomRight: Radius.circular(28),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   Future<void> navigateToScreen(DrawerIndex indexScreen) async {
     widget.callBackIndex!(indexScreen);
   }
-}
 
-ListTile signOutWidget() {
-  return ListTile(
-    title: const Text(
-      'Sign Out',
-      style: TextStyle(
-        fontFamily: BaseTheme.fontName,
-        fontWeight: FontWeight.w600,
-        fontSize: 16,
-        color: BaseTheme.darkText,
-      ),
-      textAlign: TextAlign.left,
-    ),
-    trailing: const Icon(
-      Icons.power_settings_new,
-      color: Colors.red,
-    ),
-    onTap: () {
-      onSignOutTapped();
-    },
-  );
-}
+  StatefulBuilder signOutWidget(BuildContext context) {
+    // ListTile
+    return StatefulBuilder(
+      builder: (BuildContext context, void Function(void Function()) setNewState) {
+        if (!widget.loginState) {
+          return Container();
+        }
+        return ListTile(
+          title: const Text(
+            'Sign Out',
+            style: TextStyle(
+              fontFamily: BaseTheme.fontName,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              color: BaseTheme.darkText,
+            ),
+            textAlign: TextAlign.left,
+          ),
+          trailing: const Icon(
+            Icons.power_settings_new,
+            color: Colors.red,
+          ),
+          onTap: () {
+            onSignOutTapped(context);
+          },
+        );
+      },
+    );
+  }
 
-void onSignOutTapped() {
-  //TODO signOut action
+  void onSignOutTapped(BuildContext context) {
+    final Profile profile = Provider.of<Profile>(context, listen: false);
+    profile.isAuthenticated = false;
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext context) =>  const NavigationHomeScreen(false)));
+  }
 }
-
-// enum DrawerIndex { home, postList, feedBack, help, share, about, registration, invite, login, newPost }
-//
-// class DrawerList {
-//   DrawerList({
-//     this.isAssetsImage = false,
-//     this.labelName = '',
-//     this.icon,
-//     this.index,
-//     this.imageName = '',
-//   });
-//
-//   String labelName;
-//   Icon? icon;
-//   bool isAssetsImage;
-//   String imageName;
-//   DrawerIndex? index;
-// }

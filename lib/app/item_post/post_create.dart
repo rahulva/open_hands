@@ -1,11 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:open_hands/app/components/app_text_area_field.dart';
 import 'package:open_hands/app/components/components.dart';
 import 'package:open_hands/app/components/app_text_field.dart';
 import 'package:open_hands/app/services/post_service.dart';
 import 'package:open_hands/app/custom_drawer/navigation_home_screen.dart';
 import 'package:open_hands/app/domain/post_data.dart';
+import 'package:open_hands/app/services/user_service.dart';
 import '../common/validations.dart';
 
 class PostCreate extends StatefulWidget {
@@ -41,7 +43,7 @@ class _PostCreateState extends State<PostCreate> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppTextField(30, hintText: 'Name', controller: _nameController, validator: validatePostTitle),
-                    AppTextField(100,
+                    AppTextAreaField(250,
                         hintText: 'Description', controller: _descController, validator: validatePostDescription),
                     AppTextField(50,
                         hintText: 'Category', controller: _categoryController, validator: validateNeedValue),
@@ -65,7 +67,13 @@ class _PostCreateState extends State<PostCreate> {
   }
 
   Future<void> doOnSave() async {
+    print('current user email ${UserService.get().loggedInUser!.email}');
     if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    if (UserService.get().loggedInUser == null) {
+      showErrorMessage(context, 'Please login to continue');
       return;
     }
 
@@ -78,7 +86,7 @@ class _PostCreateState extends State<PostCreate> {
         _locationController.text,
         List.from(_imagesController.text.split(";")),
         DateTime.now(),
-        'Current User');
+        UserService.get().loggedInUser!.email);
 
     print("on save $postData");
     var response = await PostService.get().createPost(postData).whenComplete(() => print("Request Completed!!"));
@@ -102,7 +110,7 @@ class _PostCreateState extends State<PostCreate> {
     // Navigator.of(context).pushAndRemoveUntil(
     //     MaterialPageRoute(builder: (BuildContext context) => const PostHomeListView()),
     //     (Route<dynamic> route) => false);
-    final route = MaterialPageRoute(builder: (BuildContext context) => const NavigationHomeScreen());
+    final route = MaterialPageRoute(builder: (BuildContext context) =>  NavigationHomeScreen(true));
     Navigator.of(context).push(route); //, (Route<dynamic> route) => false
   }
 

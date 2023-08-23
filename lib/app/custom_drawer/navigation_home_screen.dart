@@ -13,7 +13,9 @@ import 'package:open_hands/app/theme/base_theme.dart';
 import 'drawer_list_item.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
-  const NavigationHomeScreen({super.key});
+  final bool authenticated;
+
+  const NavigationHomeScreen(this.authenticated, {super.key});
 
   @override
   State<NavigationHomeScreen> createState() {
@@ -24,13 +26,19 @@ class NavigationHomeScreen extends StatefulWidget {
 class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   Widget? screenView;
   DrawerIndex? drawerIndex;
-  bool loggedIn = false;
 
   @override
   void initState() {
+    print("NavigationHome.initState ${widget.authenticated}");
     drawerIndex = DrawerIndex.home;
     screenView = const PostList();
     super.initState();
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    print("NavigationHome.setState  ${widget.authenticated}");
+    super.setState(fn);
   }
 
   @override
@@ -42,19 +50,23 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         bottom: false,
         child: Scaffold(
           backgroundColor: BaseTheme.nearlyWhite,
-          body: DrawerUserController(
-            screenIndex: drawerIndex,
-            drawerWidth: MediaQuery.of(context).size.width * 0.75,
-            onDrawerCall: (DrawerIndex drawerIndexData) {
-              /* callback from drawer for replace screen as user need with passing DrawerIndex(Enum index) */
-              changeIndex(drawerIndexData);
-            },
-            /* we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc... */
-            screenView: screenView,
-            logginState: true,
-          ),
+          body: buildBodyDrawerUserController(context),
         ),
       ),
+    );
+  }
+
+  DrawerUserController buildBodyDrawerUserController(BuildContext context) {
+    return DrawerUserController(
+      widget.authenticated,
+      screenIndex: drawerIndex,
+      drawerWidth: MediaQuery.of(context).size.width * 0.75,
+      onDrawerCall: (DrawerIndex drawerIndexData) {
+        /* callback from drawer for replace screen as user need with passing DrawerIndex(Enum index) */
+        changeIndex(drawerIndexData);
+      },
+      /* we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc... */
+      screenView: screenView,
     );
   }
 

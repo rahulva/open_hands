@@ -1,11 +1,11 @@
 class RequestData {
   String? id;
-  String title, fromEmail, telephoneNo, messageText;
+  String name, fromEmail, telephoneNo, messageText;
   String toEmail;
   DateTime requestTime;
   int postId;
 
-  RequestData(this.postId, this.id, this.title, this.fromEmail, this.telephoneNo, this.messageText, this.toEmail,
+  RequestData(this.postId, this.id, this.name, this.fromEmail, this.telephoneNo, this.messageText, this.toEmail,
       this.requestTime);
 
   RequestData.empty()
@@ -13,12 +13,12 @@ class RequestData {
         fromEmail = '',
         messageText = '',
         telephoneNo = '',
-        title = '',
-        requestTime = DateTime.now(),
+        name = '',
+        requestTime = DateTime.now().toUtc(),
         toEmail = '';
 
   Map toJson() => {
-        'title': title,
+        'name': name,
         'fromEmail': fromEmail,
         'telephoneNo': telephoneNo,
         'messageText': messageText,
@@ -29,6 +29,8 @@ class RequestData {
 
   @override
   String toString() {
-    return 'RequestData{id: $id, title: $title, fromEmail: $fromEmail, telephoneNo: $telephoneNo, message: $messageText, toEmail: $toEmail, requestTime: $requestTime, postId: $postId}';
+    return 'RequestData{id: $id, name: $name, fromEmail: $fromEmail, telephoneNo: $telephoneNo'
+        ', message: $messageText'
+        ', toEmail: $toEmail, requestTime: $requestTime, postId: $postId}';
   }
 }
