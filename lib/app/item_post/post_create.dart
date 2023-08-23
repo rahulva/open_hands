@@ -39,12 +39,12 @@ class _PostCreateState extends State<PostCreate> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildField(controller: _nameController, hintText: 'Name'),
-                    buildField(controller: _descController, hintText: 'Description'),
-                    buildField(controller: _categoryController, hintText: 'Category'),
-                    buildField(controller: _subCategoryController, hintText: 'Sub Category'),
-                    buildField(controller: _locationController, hintText: 'Location or Address'),
-                    buildField(controller: _imagesController, hintText: 'Images'),
+                    AppTextField(30, hintText: 'Name', controller: _nameController),
+                    AppTextField(100, controller: _descController, hintText: 'Description'),
+                    AppTextField(50, controller: _categoryController, hintText: 'Category'),
+                    AppTextField(50, controller: _subCategoryController, hintText: 'Sub Category'),
+                    AppTextField(100, controller: _locationController, hintText: 'Location or Address'),
+                    AppTextField(100, controller: _imagesController, hintText: 'Images'),
                     Padding(
                       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 16),
                       child: Components.button('Post', doOnSave),
@@ -59,14 +59,11 @@ class _PostCreateState extends State<PostCreate> {
     );
   }
 
-  Container buildField({var onChanged, required String hintText, required TextEditingController controller}) {
-    return Container(
-      decoration: const BoxDecoration(boxShadow: []),
-      child: AppTextField(onChanged: onChanged, hintText: hintText, controller: controller),
-    );
-  }
-
   Future<void> doOnSave() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
     var postData = PostData(
         Random().nextInt(500),
         _nameController.text,

@@ -7,8 +7,10 @@ class AppTextField extends StatelessWidget {
   final Function? onChanged;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final int maxLength;
 
-  const AppTextField({
+  const AppTextField(
+    this.maxLength, {
     super.key,
     this.hintStyle,
     this.hintText,
@@ -26,6 +28,7 @@ class AppTextField extends StatelessWidget {
         controller: controller,
         decoration: buildInputDecoration(),
         validator: validator,
+        maxLength: maxLength,
       ),
     );
   }
@@ -40,6 +43,7 @@ class AppTextField extends StatelessWidget {
       contentPadding: const EdgeInsets.only(top: 10, bottom: 10, left: 16),
       border: inputBorder(),
       enabledBorder: inputBorderEnabled(),
+      counter: const SizedBox.shrink(),
     );
   }
 

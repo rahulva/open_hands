@@ -149,10 +149,10 @@ void showErrorMessage(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
 
-Container buildField(String hintText, var controller, String? Function(String?)? validator) {
+Container buildField(int maxLength, String hintText, var controller, String? Function(String?)? validator) {
   return Container(
     decoration: const BoxDecoration(boxShadow: []),
-    child: AppTextField(hintText: hintText, controller: controller, validator: validator),
+    child: AppTextField(maxLength, hintText: hintText, controller: controller, validator: validator),
   );
 }
 

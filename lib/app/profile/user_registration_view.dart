@@ -35,10 +35,10 @@ class _UserRegistrationViewState extends State<UserRegistrationView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildField('First Name', _firstNameController, validateFirstName),
-                    buildField('Last Name', _lastNameController, validateLastName),
-                    buildField('Email', _emailController, validateEmail),
-                    buildField('Password', _passwordController, validatePassword),
+                    buildField(50, 'First Name', _firstNameController, validateFirstName),
+                    buildField(50, 'Last Name', _lastNameController, validateLastName),
+                    buildField(50, 'Email', _emailController, validateEmail),
+                    buildField(50, 'Password', _passwordController, validatePassword),
                     Padding(
                       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 8),
                       child: Components.button('Signup', doOnSave),

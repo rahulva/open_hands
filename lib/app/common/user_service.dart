@@ -33,4 +33,9 @@ class LoginData {
   String email, password;
 
   LoginData(this.email, this.password);
+
+  @override
+  String toString() {
+    return 'LoginData{email: $email}';
+  }
 }

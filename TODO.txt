@@ -52,9 +52,11 @@
 #12.04 My Post Detail Page with Delete operation integration
 
 #13 Contact Page
-#13.01 Contact Request Page UI - DONE
-#13.01 Contact Request Page UI Dummy function - DONE
-#13.01 Contact Request Page UI - Validation -
+#13.01 Request Page UI - DONE
+#13.01 Request Page UI Dummy function - DONE
+#13.01 Contact Request Page UI - General  DONE
+    -, Mobile No DONE
+    -, email - TODO
 #13.01 Contact Request Page backend implementation, validation -
 #13.01 Contact Request Page - Real backend integration -
 

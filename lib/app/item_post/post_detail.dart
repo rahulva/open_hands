@@ -24,28 +24,19 @@ class PostDetail extends StatelessWidget {
             Components.appBarClosable(context, postData.name),
             imageSlider(postData: postData, context: context),
             postContent(context),
-
-            // )
           ],
         ),
       ),
       bottomNavigationBar: SizedBox(
         height: 85,
-        // width: MediaQuery.of(context).size.width,
-        //   : MainAxisAlignment.start,
-        //   mainAxisSize: MainAxisSize.max,
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          // mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 20),
-              child:
-                  // const BackButton(),
-                  // alignment: Alignment.bottomRight,
-                  Components.button("Request", () => showRequestPage(context)),
-            ))
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 20),
+                child: Components.button("Request", () => showRequestPage(context)),
+              ),
+            )
           ],
         ),
       ),
@@ -111,7 +102,7 @@ class PostDetail extends StatelessWidget {
     );
   }
 
-  showRequestPage(BuildContext context) {
+  Future<void> showRequestPage(BuildContext context) async {
     final loggedInUser = UserService.get().loggedInUser;
     if (loggedInUser != null) {
       Navigator.push(context,
