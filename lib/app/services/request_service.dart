@@ -29,9 +29,34 @@ class RequestService {
     return http.get(Uri.parse(requestsUrl), headers: header);
   }
 
-  Future<http.Response> getRequestsByMe() async {
+  Future<List<RequestData>> getRequestsByMe() async {
     var currentUserMail = UserService.get().loggedInUser?.email;
-    return http.get(Uri.parse('$requestsUrl/from/$currentUserMail'), headers: header);
+    // try {
+    var response = await http.get(Uri.parse('$requestsUrl/from/$currentUserMail'), headers: header);
+
+    if (response.statusCode != 200) {
+      throw Exception('Retrieving requests for current user did not succeed : ${response.statusCode}');
+    }
+    print('resp ${response.body}');
+
+    var bodyList = jsonDecode(response.body) as List<dynamic>;
+    return bodyList.map((e) {
+      var item = e as Map<String, dynamic>;
+      return RequestData(
+        item['post']['id'],
+        item['id'],
+        item['name'],
+        item['fromEmail'],
+        item['telephoneNo'],
+        item['messageText'],
+        item['toEmail'],
+        DateTime.parse(item['requestTime']),
+      );
+    }).toList();
+
+    // } catch (e) {
+    //   throw Exception('Error retrieving current user requests : $e');
+    // }
   }
 
   Future<http.Response> getRequestsToMe() async {

@@ -5,6 +5,7 @@ import 'package:open_hands/app/item_post/post_create.dart';
 import 'package:open_hands/app/item_post/post_list.dart';
 import 'package:open_hands/app/profile/user_login_view.dart';
 import 'package:open_hands/app/profile/user_registration_view.dart';
+import 'package:open_hands/app/request/request_list.dart';
 import 'package:open_hands/app/screens/feedback_screen.dart';
 import 'package:open_hands/app/screens/help_screen.dart';
 import 'package:open_hands/app/screens/invite_friend_screen.dart';
@@ -117,6 +118,11 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         case DrawerIndex.myPosts:
           setState(() {
             screenView = const PostList();
+          });
+          break;
+        case DrawerIndex.messages:
+          setState(() {
+            screenView = const RequestList();
           });
           break;
         default:
