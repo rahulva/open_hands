@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -33,10 +34,6 @@ class _StatefulWidgetState extends State<ImageSliderWidget> {
         onPressed: () async {
           var newImage = await pickImage();
           if (newImage != null) {
-            // Consider saving to Galary
-            // https://pub.dev/packages/gallery_saver
-            // GallerySaver.saveImage(recordedImage.path);
-
             Directory directory = await getApplicationDocumentsDirectory();
             String path = '${directory.path}/post_image${Random(10).nextInt(10)}.png';
             File nf = File(newImage.path);
@@ -72,7 +69,9 @@ class _StatefulWidgetState extends State<ImageSliderWidget> {
       }
       return file;
     } on PlatformException catch (e) {
-      print('Failed to pick image: $e');
+      if (kDebugMode) {
+        print('Failed to pick image: $e');
+      }
     }
     return null;
   }

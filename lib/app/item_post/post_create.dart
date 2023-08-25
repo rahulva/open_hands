@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/components/app_text_area_field.dart';
 import 'package:open_hands/app/components/app_text_field.dart';
@@ -65,7 +66,9 @@ class _PostCreateState extends State<PostCreate> {
   }
 
   Future<void> doOnSave() async {
-    print('current user email ${UserService.get().loggedInUser!.email}');
+    if (kDebugMode) {
+      print('current user email ${UserService.get().loggedInUser!.email}');
+    }
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -88,21 +91,29 @@ class _PostCreateState extends State<PostCreate> {
         DateTime.now(),
         UserService.get().loggedInUser!.email);
 
-    print("on save $postData");
+    if (kDebugMode) {
+      print("on save $postData");
+    }
     try {
       var response = await PostService.get().createPost(postData).whenComplete(() => print("Request Completed!!"));
-      print("Request Completed!! ${response.statusCode}");
+      if (kDebugMode) {
+        print("Request Completed!! ${response.statusCode}");
+      }
 
       if (response.statusCode == 201) {
         var jsonDecode2 = jsonDecode(response.body) as Map<String, dynamic>;
         var imageUploadResponse = await PostService.get()
             .uploadAll(jsonDecode2['id'], List.from(_imageWidget.imageCollector.images))
             .whenComplete(() => print("Request Completed!!"));
-        print(imageUploadResponse.statusCode);
+        if (kDebugMode) {
+          print(imageUploadResponse.statusCode);
+        }
 
         // listen for response
         imageUploadResponse.stream.transform(utf8.decoder).listen((value) {
-          print(value);
+          if (kDebugMode) {
+            print(value);
+          }
         });
 
         if (context.mounted) {

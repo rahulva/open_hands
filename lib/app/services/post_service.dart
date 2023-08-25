@@ -4,8 +4,10 @@ import 'dart:convert' as convert;
 import 'dart:io';
 
 import 'package:async/async.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:open_hands/app/common/constants.dart';
+import 'package:open_hands/app/domain/image_data.dart';
 import 'package:open_hands/app/domain/post_data.dart';
 import 'package:path/path.dart';
 
@@ -43,10 +45,13 @@ class PostService {
       var jsonDecode2 = convert.jsonDecode(response.body) as List<dynamic>;
       List<PostData> data = [];
       for (var item in jsonDecode2) {
-        List<String> images = [];
-        // for (var img in item['images'] as List<dynamic>) {
-        //   images.add(img);
-        // }
+        List<AppImageData> images = [];
+        for (var img in item['images'] as List<dynamic>) {
+          if (kDebugMode) {
+            print(img);
+          }
+          images.add(AppImageData(img['id'], img['name'], img['postId'], img['type'], img['imageData']));
+        }
         data.add(PostData(item['id'], item['title'], item['description'], item['category'], item['subCategory'],
             item['location'], images, DateTime.parse(item['dateTime']), item['createdBy']));
       }

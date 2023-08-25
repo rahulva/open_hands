@@ -1,8 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:convert';
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/domain/post_data.dart';
 
+// FIXME image_input_widget is a copy of image_slider_widget and they are duplicate of this , should be refactored to remove duplicates.
 Widget imageSlider({required PostData postData, required BuildContext context}) {
   // AuthenticationNotifer _auth =
   // Provider.of<AuthenticationNotifer>(context, listen: true);
@@ -12,24 +14,25 @@ Widget imageSlider({required PostData postData, required BuildContext context}) 
       clipBehavior: Clip.none,
       children: [
         Swiper(
-          itemCount: postData.images!.length,
+          itemCount: postData.images.length,
           pagination: const SwiperPagination(
             builder: SwiperPagination.dots,
           ),
           autoplay: false,
           itemBuilder: (BuildContext context, int index) {
-            return CachedNetworkImage(
-              imageUrl: postData.images![index],
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            );
+            // return CachedNetworkImage(
+            //   imageUrl: postData.images![index],
+            //   imageBuilder: (context, imageProvider) => Container(
+            //     decoration: BoxDecoration(
+            //       image: DecorationImage(
+            //         image: imageProvider,
+            //         fit: BoxFit.cover,
+            //       ),
+            //     ),
+            //   ),
+            //   errorWidget: (context, url, error) => const Icon(Icons.error),
+            // );
+            return Image.memory(base64Decode(postData.images[index].imageData));
           },
         ),
         Positioned(

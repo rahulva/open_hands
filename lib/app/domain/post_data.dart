@@ -1,5 +1,7 @@
 import 'dart:core';
 
+import 'package:open_hands/app/domain/image_data.dart';
+
 class PostData {
   int? id;
   late String title;
@@ -7,7 +9,7 @@ class PostData {
   late String category;
   late String subCategory;
   late String location;
-  late List<String> images = [];
+  late List<AppImageData> images = [];
   late DateTime dateTime;
   late String createdBy;
 
@@ -29,7 +31,7 @@ class PostData {
         'category': category,
         'subCategory': subCategory,
         'location': location,
-        'images': images,
+        // 'images': images,
         'dateTime': dateTime.toString(),
         'createdBy': createdBy,
       };
