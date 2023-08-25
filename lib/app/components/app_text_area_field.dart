@@ -39,6 +39,7 @@ class AppTextAreaField extends AppTextField {
       contentPadding: base.contentPadding,
       border: base.border,
       enabledBorder: base.enabledBorder,
+      // counter: const SizedBox.shrink(),
     );
   }
 }

@@ -39,7 +39,7 @@ class _UserLoginViewState extends State<UserLoginView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       buildField(50, 'Email', _emailController, validateEmail),
-                      buildField(50,'Password', _passwordController, validatePassword),
+                      buildPasswordField(50,'Password', _passwordController, validatePassword),
                       Padding(
                         padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 8),
                         child: Components.button('Sign In', login),

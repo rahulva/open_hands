@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_hands/app/components/app_password_field.dart';
 import 'package:open_hands/app/components/app_text_field.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
@@ -153,6 +154,13 @@ Container buildField(int maxLength, String hintText, var controller, String? Fun
   return Container(
     decoration: const BoxDecoration(boxShadow: []),
     child: AppTextField(maxLength, hintText: hintText, controller: controller, validator: validator),
+  );
+}
+
+Container buildPasswordField(int maxLength, String hintText, var controller, String? Function(String?)? validator) {
+  return Container(
+    decoration: const BoxDecoration(boxShadow: []),
+    child: AppPasswordField(maxLength, hintText: hintText, controller: controller, validator: validator),
   );
 }
 
