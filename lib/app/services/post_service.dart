@@ -52,7 +52,7 @@ class PostService {
           }
           images.add(AppImageData(img['id'], img['name'], img['postId'], img['type'], img['imageData']));
         }
-        data.add(PostData(item['id'], item['title'], item['description'], item['category'], item['subCategory'],
+        data.add(PostData(item['id'], item['title'], item['description'], item['category'], item['condition'],
             item['location'], images, DateTime.parse(item['dateTime']), item['createdBy']));
       }
       return data;

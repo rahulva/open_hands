@@ -76,7 +76,7 @@ class PostDetail extends StatelessWidget {
           const Text("Description", style: title),
           Text(postData.description, textAlign: TextAlign.justify),
           const SizedBox(height: 10),
-          Text('${postData.category}, ${postData.subCategory}', textAlign: TextAlign.left, style: textStyle),
+          Text('${postData.category}, ${postData.condition}', textAlign: TextAlign.left, style: textStyle),
           const SizedBox(height: 10),
           const Text('Available at', textAlign: TextAlign.left, style: title),
           Text(postData.location, textAlign: TextAlign.left, style: textStyle),

@@ -27,7 +27,7 @@
 #09.01 Add New Post UI v2 - description is a text area - DONE
 #09.xx Add New Post UI v2 - Real backend integration - DONE
 #09.03 Add New Post UI v2 - images is a image picker/camara integration P1
-#09.02 Add New Post UI v2 - category, SubCategory a dropdown P2
+#09.02 Add New Post UI v2 - category, Condition a dropdown P2
 
 
 #10 Post List View (Home)

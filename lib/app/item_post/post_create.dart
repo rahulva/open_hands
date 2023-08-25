@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:open_hands/app/components/app_dropdown_field.dart';
 import 'package:open_hands/app/components/app_text_area_field.dart';
 import 'package:open_hands/app/components/app_text_field.dart';
 import 'package:open_hands/app/components/components.dart';
@@ -26,9 +27,26 @@ class _PostCreateState extends State<PostCreate> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
-  final TextEditingController _subCategoryController = TextEditingController();
+  final TextEditingController _conditionController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   final ImageSliderWidget _imageWidget = ImageSliderWidget();
+
+  static const List<String> category = [
+    'Furniture',
+    'Book',
+    'Home Appliances',
+    'Electronics',
+    'Computer',
+    'Laptop',
+    'Others'
+  ];
+  static const List<String> condition = ['New', 'Like New', 'Slightly Used', 'Old', 'Heavily Used'];
+
+  // List<DropdownMenuEntry<String>> list = categorySubCategory.keys
+  //     .map<DropdownMenuEntry<String>>((String value) => DropdownMenuEntry<String>(value: value, label: value))
+  //     .toList();
+
+  // List<String> subCategories = [''];
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +65,28 @@ class _PostCreateState extends State<PostCreate> {
                     AppTextField.short(30, 'Name', _nameController, validatePostTitle),
                     AppTextAreaField(250,
                         hintText: 'Description', controller: _descController, validator: validatePostDescription),
-                    AppTextField.short(50, 'Category', _categoryController, validateNeedValue),
-                    AppTextField.short(50, 'Sub Category', _subCategoryController, validateNeedValue),
+                    // AppTextField.short(50, 'Category', _categoryController, validateNeedValue),
+                    AppDropDownField(
+                      50,
+                      controller: _categoryController,
+                      validator: validateNeedValue,
+                      items: category,
+                      hintText: 'Category',
+                      onChanged: (String? v) {
+                        _categoryController.text = v!;
+                      },
+                    ),
+                    // AppTextField.short(50, 'Sub Category', _subCategoryController, validateNeedValue),
+                    AppDropDownField(
+                      50,
+                      controller: _conditionController,
+                      validator: validateNeedValue,
+                      items: condition,
+                      hintText: 'Condition',
+                      onChanged: (String? v) {
+                        _conditionController.text = v!;
+                      },
+                    ),
                     AppTextField.short(100, 'Location or Address', _locationController, validateNeedValue),
                     _imageWidget,
                     Padding(
@@ -80,16 +118,8 @@ class _PostCreateState extends State<PostCreate> {
 
     print("${_imageWidget.imageCollector.images}");
 
-    var postData = PostData(
-        null,
-        _nameController.text,
-        _descController.text,
-        _categoryController.text,
-        _subCategoryController.text,
-        _locationController.text,
-        [],
-        DateTime.now(),
-        UserService.get().loggedInUser!.email);
+    var postData = PostData(null, _nameController.text, _descController.text, _categoryController.text,
+        _conditionController.text, _locationController.text, [], DateTime.now(), UserService.get().loggedInUser!.email);
 
     if (kDebugMode) {
       print("on save $postData");
@@ -144,7 +174,7 @@ class _PostCreateState extends State<PostCreate> {
   void clearFields() {
     _nameController.clear();
     _categoryController.clear();
-    _subCategoryController.clear();
+    _conditionController.clear();
     _imageWidget.imageCollector.reset();
     _descController.clear();
     _locationController.clear();
