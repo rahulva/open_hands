@@ -27,7 +27,7 @@ class _UserRegistrationViewState extends State<UserRegistrationView> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            Components.appBarClosable(context, 'Registration'),
+            Components.appBar(context, 'Registration'),
             Padding(
               padding: const EdgeInsets.only(top: 18, bottom: 18, left: 18, right: 18),
               child: Container(

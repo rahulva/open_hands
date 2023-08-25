@@ -7,7 +7,7 @@ class PostData {
   late String category;
   late String subCategory;
   late String location;
-  late List<String>? images = List.empty(growable: true);
+  late List<String> images = [];
   late DateTime dateTime;
   late String createdBy;
 

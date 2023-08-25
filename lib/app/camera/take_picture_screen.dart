@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:open_hands/app/camera/image_collector.dart';
 
 import 'display_picture_screen.dart';
 
@@ -7,9 +8,11 @@ class TakePictureScreen extends StatefulWidget {
   const TakePictureScreen({
     super.key,
     required this.camera,
+    required this.imageCollector,
   });
 
   final CameraDescription camera;
+  final ImageCollector imageCollector;
 
   @override
   TakePictureScreenState createState() => TakePictureScreenState();
@@ -55,9 +58,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             await Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => DisplayPictureScreen(
-                  // Pass the automatically generated path to
-                  // the DisplayPictureScreen widget.
                   imagePath: image.path,
+                  imageCollector: widget.imageCollector,
                 ),
               ),
             );

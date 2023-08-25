@@ -20,6 +20,17 @@ class AppTextField extends StatelessWidget {
     this.validator,
   });
 
+  const AppTextField.short(
+    this.maxLength,
+    this.hintText,
+    this.controller,
+    this.validator, {
+    super.key,
+    this.hintStyle,
+    this.icon,
+    this.onChanged,
+  });
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

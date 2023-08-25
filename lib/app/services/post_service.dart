@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:convert' as convert;
+import 'dart:io';
 
+import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'package:open_hands/app/common/constants.dart';
 import 'package:open_hands/app/domain/post_data.dart';
-import 'package:open_hands/app/item_post/post_detail.dart';
-import 'dart:convert' as convert;
+import 'package:path/path.dart';
 
 class PostService {
   static final postService = PostService();
@@ -27,97 +29,75 @@ class PostService {
 
   Future<http.Response> deletePost(int postId, PostData postModel) async {
     print("Delete Post $postId $postModel");
-    // if (dummyEnabled) {
-    //   return deletePostDummy(postId);
-    // }
     return http.delete(Uri.parse("$postsUrl/$postId"), headers: header);
   }
 
   Future<http.Response> getAllPosts() async {
-    // if (dummyEnabled) {
-    //   return getAllPostsDummy();
-    // }
     return http.get(Uri.parse(postsUrl), headers: header);
   }
 
   Future<List<PostData>> getAllPostsInType() async {
     var response = await getAllPosts();
     if (response.statusCode == 200) {
-      print(response.body);
+      // print(response.body);
       var jsonDecode2 = convert.jsonDecode(response.body) as List<dynamic>;
       List<PostData> data = [];
       for (var item in jsonDecode2) {
-        print(item);
         List<String> images = [];
-        for (var img in item['images'] as List<dynamic>) {
-          images.add(img);
-        }
+        // for (var img in item['images'] as List<dynamic>) {
+        //   images.add(img);
+        // }
         data.add(PostData(item['id'], item['title'], item['description'], item['category'], item['subCategory'],
             item['location'], images, DateTime.parse(item['dateTime']), item['createdBy']));
       }
       return data;
-      // return Future<List<PostData>>.sync(() => data);
     }
     return List.empty();
   }
 
-// List<PostData> getDummyPosts() {
-//   fillIfEmpty();
-//   print("Total posts ${dummyPosts.length}");
-//   return dummyPosts;
-// }
+  // upload(File imageFile) async {
+  //   // string to uri
+  //   var uri = Uri.parse('$postImagesUrl/upload-all');
+  //
+  //   // create multipart request
+  //   var request = http.MultipartRequest("POST", uri);
+  //
+  //   // open a bytestream
+  //   var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+  //
+  //   // get file length
+  //   var length = await imageFile.length();
+  //
+  //   // multipart that takes file
+  //   var multipartFile = http.MultipartFile('file', stream, length, filename: basename(imageFile.path));
+  //
+  //   // add file to multipart
+  //   request.files.add(multipartFile);
+  //
+  //   // send
+  //   var response = await request.send();
+  //   print(response.statusCode);
+  //
+  //   // listen for response
+  //   response.stream.transform(utf8.decoder).listen((value) {
+  //     print(value);
+  //   });
+  // }
 
-// bool dummyEnabled = false;
-// static List<PostData> dummyPosts = List.empty(growable: true);
+  Future<http.StreamedResponse> uploadAll(int postId, List<String> imagePaths) async {
+    var request = http.MultipartRequest("POST", Uri.parse('$postImagesUrl/upload-all'));
+    request.fields['postId'] = '$postId';
+    for (var fPath in imagePaths) {
+      var imageFile = File(fPath);
+      var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+      var length = await imageFile.length();
+      var multipartFile = http.MultipartFile('file', stream, length, filename: basename(imageFile.path));
 
-// http.Response createPostDummyResp(PostData postModel) {
-//   postModel.id = Random().nextInt(500);
-//   dummyPosts.add(postModel);
-//   print("Dummy post created. New length ${dummyPosts.length}");
-//   return http.Response(jsonEncode(postModel.toJson()), 201);
-// }
-
-// http.Response deletePostDummy(int postId) {
-//   PostData found = dummyPosts.firstWhere((element) => element.id == postId, orElse: () => PostData.empty());
-//   if (found.id != null) {
-//     dummyPosts.removeWhere((element) => element.id == postId);
-//     https: //developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE
-//     return http.Response('', 200);
-//   }
-//   return http.Response('', 204);
-// }
-
-// http.Response getAllPostsDummy() {
-//   fillIfEmpty();
-//   return http.Response(jsonEncode(dummyPosts), 200);
-// }
-
-// void fillIfEmpty() {
-//   if (dummyPosts.isEmpty) {
-//     print("Empty dummy - filling!!!");
-//     dummyPosts
-//       ..add(PostData(
-//           Random().nextInt(500),
-//           'Dummy 1',
-//           'Dummy Post - The item is very new. I have used it for only few times',
-//           'Household',
-//           'Cleaning',
-//           'Colombo',
-//           [
-//             "https://images.unsplash.com/photo-1598928636135-d146006ff4be?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fGZhc2hpb258ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
-//           ],
-//           DateTime.now(),
-//           'Dummy user'))
-//       ..add(PostData(
-//           Random().nextInt(500),
-//           'Dummy - Sony Radio',
-//           'Dummy Post - The item is very new. I have used it for only few times',
-//           'Electronics',
-//           'Radio',
-//           'Colombo',
-//           ["https://i.pinimg.com/736x/21/b8/7c/21b87c1668302c53892dc16c38ef9994.jpg"],
-//           DateTime.now(),
-//           'Dummy user'));
-//   }
-// }
+      request.files.add(multipartFile);
+    }
+    // send
+    http.StreamedResponse response = await request.send();
+    print("Image Upload completed");
+    return response;
+  }
 }

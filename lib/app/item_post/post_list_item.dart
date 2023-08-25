@@ -186,7 +186,7 @@ class PostListItem extends StatelessWidget {
   Text attemptText() {
     return Text(
       // ' ${postData!.failedAttempts} Attempts',
-      ' ${postData!.category} Attempts',
+      ' ${postData.category} Attempts',
       style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
     );
   }
@@ -194,7 +194,7 @@ class PostListItem extends StatelessWidget {
   Text distanceText() {
     return Text(
       // '${postData!.dist.toStringAsFixed(1)} km to city',
-      'Collection at ${postData?.location}',
+      'Collection at ${postData.location}',
       overflow: TextOverflow.ellipsis,
       style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
     );
@@ -202,7 +202,7 @@ class PostListItem extends StatelessWidget {
 
   Text mainText() {
     return Text(
-      postData!.title,
+      postData.title,
       textAlign: TextAlign.left,
       style: const TextStyle(
         fontWeight: FontWeight.w600,
@@ -222,7 +222,7 @@ class PostListItem extends StatelessWidget {
   Text subText() {
     return Text(
       // wordData!.meaning,
-      postData!.description,
+      postData.description,
       style: TextStyle(
         fontSize: 14,
         color: Colors.grey.withOpacity(0.8),
@@ -270,3 +270,5 @@ class PostListItem extends StatelessWidget {
     );
   }*/
 }
+
+

@@ -1,6 +1,6 @@
-import 'package:camera/camera.dart';
-import 'package:flutter/material.dart';
-import 'package:open_hands/app/camera/take_picture_screen.dart';
+// import 'package:camera/camera.dart';
+// import 'package:flutter/material.dart';
+// import 'package:open_hands/app/camera/take_picture_screen.dart';
 
 // Future<void> main() async {
 //   WidgetsFlutterBinding.ensureInitialized();

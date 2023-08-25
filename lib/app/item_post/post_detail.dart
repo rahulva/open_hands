@@ -20,7 +20,7 @@ class PostDetail extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Components.appBarClosable(context, postData.title),
+            Components.appBar(context, postData.title),
             imageSlider(postData: postData, context: context),
             postContent(context),
           ],

@@ -1,13 +1,15 @@
-import 'dart:math';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/components/app_text_area_field.dart';
-import 'package:open_hands/app/components/components.dart';
 import 'package:open_hands/app/components/app_text_field.dart';
-import 'package:open_hands/app/services/post_service.dart';
+import 'package:open_hands/app/components/components.dart';
+import 'package:open_hands/app/components/image_slider_widget.dart';
 import 'package:open_hands/app/custom_drawer/navigation_home_screen.dart';
 import 'package:open_hands/app/domain/post_data.dart';
+import 'package:open_hands/app/services/post_service.dart';
 import 'package:open_hands/app/services/user_service.dart';
+
 import '../common/validations.dart';
 
 class PostCreate extends StatefulWidget {
@@ -25,16 +27,15 @@ class _PostCreateState extends State<PostCreate> {
   final TextEditingController _categoryController = TextEditingController();
   final TextEditingController _subCategoryController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
-  final TextEditingController _imagesController = TextEditingController();
+  final ImageSliderWidget _imageWidget = ImageSliderWidget();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Components.appBarClosable(context, 'New Item'),
+            Components.appBar(context, 'New Item'),
             Padding(
               padding: const EdgeInsets.only(top: 18, bottom: 18, left: 18, right: 18),
               child: Form(
@@ -42,16 +43,13 @@ class _PostCreateState extends State<PostCreate> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppTextField(30, hintText: 'Name', controller: _nameController, validator: validatePostTitle),
+                    AppTextField.short(30, 'Name', _nameController, validatePostTitle),
                     AppTextAreaField(250,
                         hintText: 'Description', controller: _descController, validator: validatePostDescription),
-                    AppTextField(50,
-                        hintText: 'Category', controller: _categoryController, validator: validateNeedValue),
-                    AppTextField(50,
-                        hintText: 'Sub Category', controller: _subCategoryController, validator: validateNeedValue),
-                    AppTextField(100,
-                        hintText: 'Location or Address', controller: _locationController, validator: validateNeedValue),
-                    AppTextField(100, hintText: 'Images', controller: _imagesController),
+                    AppTextField.short(50, 'Category', _categoryController, validateNeedValue),
+                    AppTextField.short(50, 'Sub Category', _subCategoryController, validateNeedValue),
+                    AppTextField.short(100, 'Location or Address', _locationController, validateNeedValue),
+                    _imageWidget,
                     Padding(
                       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 16),
                       child: Components.button('Post', doOnSave),
@@ -77,32 +75,50 @@ class _PostCreateState extends State<PostCreate> {
       return;
     }
 
+    print("${_imageWidget.imageCollector.images}");
+
     var postData = PostData(
-        Random().nextInt(500),
+        null,
         _nameController.text,
         _descController.text,
         _categoryController.text,
         _subCategoryController.text,
         _locationController.text,
-        List.from(_imagesController.text.split(";")),
+        [],
         DateTime.now(),
         UserService.get().loggedInUser!.email);
 
     print("on save $postData");
-    var response = await PostService.get().createPost(postData).whenComplete(() => print("Request Completed!!"));
-    print("Request Completed!! ${response.statusCode}");
+    try {
+      var response = await PostService.get().createPost(postData).whenComplete(() => print("Request Completed!!"));
+      print("Request Completed!! ${response.statusCode}");
 
-    if (response.statusCode == 201) {
-      if (context.mounted) {
-        showSuccessMessage(context, 'Creation Success');
+      if (response.statusCode == 201) {
+        var jsonDecode2 = jsonDecode(response.body) as Map<String, dynamic>;
+        var imageUploadResponse = await PostService.get()
+            .uploadAll(jsonDecode2['id'], List.from(_imageWidget.imageCollector.images))
+            .whenComplete(() => print("Request Completed!!"));
+        print(imageUploadResponse.statusCode);
+
+        // listen for response
+        imageUploadResponse.stream.transform(utf8.decoder).listen((value) {
+          print(value);
+        });
+
+        if (context.mounted) {
+          showSuccessMessage(context, 'Creation Success');
+        }
+        clearFields();
+        navigateToListPage();
+      } else {
+        if (context.mounted) {
+          showErrorMessage(context, 'Creation Error');
+        }
+        throw Exception('Failed to create album.');
       }
-      clearFields();
-      navigateToListPage();
-    } else {
-      if (context.mounted) {
-        showErrorMessage(context, 'Creation Error');
-      }
-      throw Exception('Failed to create album.');
+    } catch (e) {
+      print('Error Incre posts $e');
+      showErrorMessage(context, 'Creation Error');
     }
   }
 
@@ -110,7 +126,7 @@ class _PostCreateState extends State<PostCreate> {
     // Navigator.of(context).pushAndRemoveUntil(
     //     MaterialPageRoute(builder: (BuildContext context) => const PostHomeListView()),
     //     (Route<dynamic> route) => false);
-    final route = MaterialPageRoute(builder: (BuildContext context) =>  NavigationHomeScreen(true));
+    final route = MaterialPageRoute(builder: (BuildContext context) => const NavigationHomeScreen(true));
     Navigator.of(context).push(route); //, (Route<dynamic> route) => false
   }
 
@@ -118,14 +134,8 @@ class _PostCreateState extends State<PostCreate> {
     _nameController.clear();
     _categoryController.clear();
     _subCategoryController.clear();
+    _imageWidget.imageCollector.reset();
     _descController.clear();
-    _imagesController.clear();
     _locationController.clear();
   }
-
-// Widget name(BuildContext context) {
-//   PostHomeListViewV2 val = PostHomeListViewV2();
-//   // val.
-//   return val;
-// }
 }
