@@ -80,7 +80,7 @@ class HotelListView extends StatelessWidget {
                                             Text(
                                               hotelData!.titleTxt,
                                               textAlign: TextAlign.left,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 22,
                                               ),

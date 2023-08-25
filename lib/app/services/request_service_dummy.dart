@@ -5,8 +5,6 @@ import 'package:open_hands/app/domain/request_data.dart';
 import 'package:open_hands/app/services/request_service.dart';
 import 'package:uuid/uuid.dart';
 
-import '../common/constants.dart';
-
 class RequestServiceDummy extends RequestService {
   var uuid = const Uuid();
   static RequestServiceDummy postServiceDummy = RequestServiceDummy();
@@ -49,7 +47,7 @@ class RequestServiceDummy extends RequestService {
         dummyRequests.firstWhere((element) => element.id == requestId, orElse: () => RequestData.empty());
     if (found.id != null) {
       dummyRequests.removeWhere((element) => element.id == requestId);
-      https: //developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE
+      // https: //developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE
       return http.Response('', 200);
     }
     return http.Response('', 204);

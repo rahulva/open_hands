@@ -227,7 +227,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderSt
                           ),
                           Text(
                             '${DateFormat("dd, MMM").format(startDate)} - ${DateFormat("dd, MMM").format(endDate)}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.w100,
                               fontSize: 16,
                             ),
@@ -278,7 +278,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderSt
                           const SizedBox(
                             height: 8,
                           ),
-                          Text(
+                          const Text(
                             '1 Room - 2 Adults',
                             style: TextStyle(
                               fontWeight: FontWeight.w100,
@@ -324,7 +324,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderSt
                       fontSize: 18,
                     ),
                     cursorColor: AppTheme.buildLightTheme().primaryColor,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'London...',
                     ),
@@ -388,9 +388,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderSt
             padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
             child: Row(
               children: <Widget>[
-                Expanded(
+                const Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Text(
                       '530 hotels found',
                       style: TextStyle(
@@ -422,7 +422,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderSt
                       padding: const EdgeInsets.only(left: 8),
                       child: Row(
                         children: <Widget>[
-                          Text(
+                          const Text(
                             'Filter',
                             style: TextStyle(
                               fontWeight: FontWeight.w100,
@@ -490,7 +490,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderSt
               alignment: Alignment.centerLeft,
               width: AppBar().preferredSize.height + 40,
               height: AppBar().preferredSize.height,
-              child: Material(
+              child: const Material(
                   // color: Colors.transparent,
                   // child: InkWell(
                   //   borderRadius: const BorderRadius.all(
@@ -506,7 +506,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderSt
                   // ),
                   ),
             ),
-            Expanded(
+            const Expanded(
               child: Center(
                 child: Text(
                   'My Words',
@@ -543,8 +543,8 @@ class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderSt
           Radius.circular(32.0),
         ),
         onTap: () {},
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Icon(FontAwesomeIcons.locationDot),
         ),
       ),
@@ -559,8 +559,8 @@ class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderSt
           Radius.circular(32.0),
         ),
         onTap: () {},
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Icon(Icons.favorite_border),
         ),
       ),

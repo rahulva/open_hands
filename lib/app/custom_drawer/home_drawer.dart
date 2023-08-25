@@ -7,7 +7,7 @@ import 'drawer_list_item.dart';
 import 'navigation_home_screen.dart';
 
 class HomeDrawer extends StatefulWidget {
-  HomeDrawer(
+  const HomeDrawer(
     this.loginState, {
     Key? key,
     this.screenIndex,
@@ -18,7 +18,7 @@ class HomeDrawer extends StatefulWidget {
   final AnimationController? iconAnimationController;
   final DrawerIndex? screenIndex;
   final Function(DrawerIndex)? callBackIndex;
-  bool loginState;
+  final bool loginState;
 
   @override
   State<HomeDrawer> createState() => _HomeDrawerState();

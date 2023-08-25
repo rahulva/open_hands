@@ -45,7 +45,7 @@ class PostServiceDummy extends PostService {
     PostData found = dummyPosts.firstWhere((element) => element.id == postId, orElse: () => PostData.empty());
     if (found.id != null) {
       dummyPosts.removeWhere((element) => element.id == postId);
-      https: //developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE
+      // https: //developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE
       return http.Response('', 200);
     }
     return http.Response('', 204);
@@ -68,7 +68,7 @@ class PostServiceDummy extends PostService {
             'Cleaning',
             'Colombo',
             [
-              "https://images.unsplash.com/photo-1598928636135-d146006ff4be?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fGZhc2hpb258ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+              // "https://images.unsplash.com/photo-1598928636135-d146006ff4be?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fGZhc2hpb258ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
             ],
             DateTime.now(),
             'Dummy user'))
@@ -79,7 +79,9 @@ class PostServiceDummy extends PostService {
             'Electronics',
             'Radio',
             'Colombo',
-            ["https://i.pinimg.com/736x/21/b8/7c/21b87c1668302c53892dc16c38ef9994.jpg"],
+            [
+              // "https://i.pinimg.com/736x/21/b8/7c/21b87c1668302c53892dc16c38ef9994.jpg"
+            ],
             DateTime.now(),
             'Dummy user'));
     }

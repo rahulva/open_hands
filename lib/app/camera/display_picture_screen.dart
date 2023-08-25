@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/camera/image_collector.dart';
-import 'package:open_hands/app/item_post/post_create.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;

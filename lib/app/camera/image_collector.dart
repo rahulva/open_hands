@@ -5,7 +5,9 @@ class ImageCollector {
 
   set add(String image) {
     var add = _images.add(image);
-    print('Adding new image $image $add');
+    if (kDebugMode) {
+      print('Adding new image $image $add');
+    }
   }
 
   Set<String> get images {
