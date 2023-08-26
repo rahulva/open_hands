@@ -42,22 +42,31 @@ class PostService {
     var response = await getAllPosts();
     if (response.statusCode == 200) {
       // print(response.body);
-      var jsonDecode2 = convert.jsonDecode(response.body) as List<dynamic>;
-      List<PostData> data = [];
-      for (var item in jsonDecode2) {
-        List<AppImageData> images = [];
-        for (var img in item['images'] as List<dynamic>) {
-          if (kDebugMode) {
-            print(img);
-          }
-          images.add(AppImageData(img['id'], img['name'], img['postId'], img['type'], img['imageData']));
-        }
-        data.add(PostData(item['id'], item['title'], item['description'], item['category'], item['condition'],
-            item['location'], images, DateTime.parse(item['dateTime']), item['createdBy']));
-      }
-      return data;
+      return toModel(response);
     }
     return List.empty();
+  }
+
+  Future<List<PostData>> getPostCreatedBy(String email) async {
+    var response = await http.get(Uri.parse('$postsUrl/$email'), headers: header);
+    return toModel(response);
+  }
+
+  List<PostData> toModel(http.Response response) {
+    var jsonDecode2 = convert.jsonDecode(response.body) as List<dynamic>;
+    List<PostData> data = [];
+    for (var item in jsonDecode2) {
+      List<AppImageData> images = [];
+      for (var img in item['images'] as List<dynamic>) {
+        if (kDebugMode) {
+          print(img);
+        }
+        images.add(AppImageData(img['id'], img['name'], img['postId'], img['type'], img['imageData']));
+      }
+      data.add(PostData(item['id'], item['title'], item['description'], item['category'], item['condition'],
+          item['location'], images, DateTime.parse(item['dateTime']), item['createdBy']));
+    }
+    return data;
   }
 
   // upload(File imageFile) async {

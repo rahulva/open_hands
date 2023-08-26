@@ -7,37 +7,38 @@ import 'package:open_hands/app/theme/app_theme.dart';
 import '../components/animation_components.dart';
 import '../components/app_bar_part.dart';
 
-class RequestList extends StatefulWidget {
-  const RequestList({Key? key, required this.pageTitle}) : super(key: key);
+class Inbox extends StatefulWidget {
+  const Inbox({Key? key, required this.pageTitle}) : super(key: key);
   final String pageTitle;
 
   @override
-  State<RequestList> createState() => RequestListState();
+  State<Inbox> createState() => InboxState();
 }
 
-class RequestListState extends State<RequestList> with TickerProviderStateMixin {
-  final AnimationStateHolder _animationStateHolder = AnimationStateHolder();
+class InboxState extends State<Inbox> with TickerProviderStateMixin {
+  final AnimationStateHolder animationStateHolder = AnimationStateHolder();
+
   final ScrollController _scrollController = ScrollController();
-  List<RequestData> _requestList = List.empty();
+  List<RequestData> requestList = List.empty();
 
   @override
   void initState() {
-    _animationStateHolder.initAnimationController(this);
+    animationStateHolder.initAnimationController(this);
     super.initState();
     getData().then((value) {
       setState(() {
-        _requestList = value;
+        requestList = value;
       });
     });
   }
 
   Future<List<RequestData>> getData() async {
-    return await RequestService.get().getMessagesByMe();
+    return await RequestService.get().getMessagesForMe();
   }
 
   @override
   void dispose() {
-    _animationStateHolder.disposeAnimation();
+    animationStateHolder.disposeAnimation();
     super.dispose();
   }
 
@@ -67,9 +68,9 @@ class RequestListState extends State<RequestList> with TickerProviderStateMixin 
                         color: AppTheme.buildLightTheme().colorScheme.background,
                         child: RefreshIndicator(
                           onRefresh: () async {
-                            _requestList = await getData();
+                            requestList = await getData();
                           },
-                          child: listViewBuilder(_requestList, _animationStateHolder),
+                          child: listViewBuilder(requestList, animationStateHolder),
                         ),
                       ),
                     ),
@@ -117,4 +118,6 @@ class RequestListState extends State<RequestList> with TickerProviderStateMixin 
       },
     );
   }
+
+// FIXME This is a cop
 }

@@ -30,12 +30,13 @@ class PostDetail extends StatelessWidget {
         height: 85,
         child: Row(
           children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 20),
-                child: Components.button("Request", () => showRequestPage(context)),
-              ),
-            )
+            if (postData.createdBy != UserService.get().loggedInUser?.email)
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 20),
+                  child: Components.button("Request", () => showRequestPage(context)),
+                ),
+              )
           ],
         ),
       ),
@@ -86,16 +87,6 @@ class PostDetail extends StatelessWidget {
           const SizedBox(height: 10),
           const Text('Created on', textAlign: TextAlign.left, style: title),
           Text(formatter.format(postData.dateTime), textAlign: TextAlign.left, style: textStyle),
-          // ),
-          // TODO If it is not created by current user, show 'Request' button
-          // TODO On Click of 'Request', 1 Option 1 - show - "login to request this item"
-          //  Option 2 - Redirect to login page, upon successful login, redirect to
-
-          // On 'Contact' button
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 16),
-          //   child: Components.button('Post', doOnSave),
-          // )
         ],
       ),
     );

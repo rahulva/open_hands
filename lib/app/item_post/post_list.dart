@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:open_hands/app/services/post_service.dart';
 import 'package:open_hands/app/item_post/post_list_item.dart';
+import 'package:open_hands/app/services/user_service.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
 import '../domain/post_data.dart';
 
 class PostList extends StatefulWidget {
-  const PostList({Key? key}) : super(key: key);
+  const PostList({Key? key, required this.pageTitle}) : super(key: key);
+  final String pageTitle;
 
   @override
   State<PostList> createState() => _PostListState();
@@ -30,11 +32,15 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
     print("post_list Making request");
 
     super.initState();
-    PostService.get().getAllPostsInType().then((value) {
+    getDataFor(widget.pageTitle).then((value) {
       setState(() {
         posts = value;
       });
     });
+  }
+
+  Future<List<PostData>> getDataFor(String page) async {
+    return PostService.get().getAllPostsInType();
   }
 
   Future<bool> getData() async {
@@ -52,56 +58,54 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Theme(
       data: AppTheme.buildLightTheme(),
-      child: Container(
-        child: Scaffold(
-          body: Stack(
-            children: <Widget>[
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                onTap: () {
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Column(
-                  children: <Widget>[
-                    getAppBarUI(),
-                    Expanded(
-                      child: NestedScrollView(
-                        controller: _scrollController,
-                        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                          return <Widget>[
-                            SliverList(
-                              delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-                                return Column(
-                                  children: <Widget>[
-                                    getSearchBarUI(),
-                                    /*getTimeDateUI(),*/
-                                  ],
-                                );
-                              }, childCount: 1),
+      child: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              onTap: () {
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+              child: Column(
+                children: <Widget>[
+                  getAppBarUI(),
+                  Expanded(
+                    child: NestedScrollView(
+                      controller: _scrollController,
+                      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                        return <Widget>[
+                          SliverList(
+                            delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+                              return Column(
+                                children: <Widget>[
+                                  getSearchBarUI(),
+                                  /*getTimeDateUI(),*/
+                                ],
+                              );
+                            }, childCount: 1),
+                          ),
+                          /*SliverPersistentHeader(
+                            pinned: true,
+                            floating: true,
+                            delegate: ContestTabHeader(
+                              getFilterBarUI(),
                             ),
-                            /*SliverPersistentHeader(
-                              pinned: true,
-                              floating: true,
-                              delegate: ContestTabHeader(
-                                getFilterBarUI(),
-                              ),
-                            ),*/
-                          ];
-                        },
-                        body: Container(
-                          color: AppTheme.buildLightTheme().colorScheme.background,
-                          child: defaultListView(),
-                        ),
+                          ),*/
+                        ];
+                      },
+                      body: Container(
+                        color: AppTheme.buildLightTheme().colorScheme.background,
+                        child: defaultListView(),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -177,7 +181,7 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
   Widget defaultListView() {
     return RefreshIndicator(
         onRefresh: () async {
-          posts = await postService.getAllPostsInType();
+          posts = await getDataFor(widget.pageTitle);
         },
         child: ListView.builder(
           itemCount: posts.length,

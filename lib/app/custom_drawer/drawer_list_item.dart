@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 enum DrawerIndex {
   home,
-  myPosts, // TODO introduce pages, navigation
-  messages, // TODO introduce pages, navigation
+  inbox,
+  myPosts,
+  newPost,
+  myRequests,
   feedBack,
   help,
   share,
   about,
   invite,
-
   registration,
   login,
-  newPost,
-  hotelHome,
+  // hotelHome,
 }
 
 class DrawerListItem {

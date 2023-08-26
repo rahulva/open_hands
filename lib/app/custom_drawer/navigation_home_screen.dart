@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/custom_drawer/drawer_user_controller.dart';
 import 'package:open_hands/app/hotel_booking/hotel_home_screen.dart';
+import 'package:open_hands/app/inbox/inbox.dart';
 import 'package:open_hands/app/item_post/post_create.dart';
 import 'package:open_hands/app/item_post/post_list.dart';
+import 'package:open_hands/app/profile/my_posts.dart';
 import 'package:open_hands/app/profile/user_login_view.dart';
 import 'package:open_hands/app/profile/user_registration_view.dart';
 import 'package:open_hands/app/request/request_list.dart';
@@ -32,7 +34,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   void initState() {
     print("NavigationHome.initState ${widget.authenticated}");
     drawerIndex = DrawerIndex.home;
-    screenView = const PostList();
+    screenView = const PostList(pageTitle: 'All Posts');
     super.initState();
   }
 
@@ -77,7 +79,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       switch (drawerIndex) {
         case DrawerIndex.home:
           setState(() {
-            screenView = const PostList();
+            screenView = const PostList(pageTitle: 'All Posts');
           });
           break;
         case DrawerIndex.help:
@@ -110,19 +112,19 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
             screenView = const PostCreate();
           });
           break;
-        case DrawerIndex.hotelHome:
-          setState(() {
-            screenView = const HotelHomeScreen();
-          });
-          break;
         case DrawerIndex.myPosts:
           setState(() {
-            screenView = const PostList();
+            screenView = const MyPosts(pageTitle: 'My Posts');
           });
           break;
-        case DrawerIndex.messages:
+        case DrawerIndex.myRequests:
           setState(() {
-            screenView = const RequestList();
+            screenView = const RequestList(pageTitle: 'My Requests');
+          });
+          break;
+        case DrawerIndex.inbox:
+          setState(() {
+            screenView = const Inbox(pageTitle: 'Inbox');
           });
           break;
         default:

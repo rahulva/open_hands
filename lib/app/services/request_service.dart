@@ -29,16 +29,33 @@ class RequestService {
     return http.get(Uri.parse(requestsUrl), headers: header);
   }
 
-  Future<List<RequestData>> getRequestsByMe() async {
+  Future<List<RequestData>> getMessagesByMe() async {
+    return await getMessages('from');
+  }
+
+  Future<List<RequestData>> getMessagesForMe() async {
+    return getMessages('to');
+  }
+
+  Future<List<RequestData>> getMessages(String fromOrTo) async {
     var currentUserMail = UserService.get().loggedInUser?.email;
     // try {
-    var response = await http.get(Uri.parse('$requestsUrl/from/$currentUserMail'), headers: header);
-
-    if (response.statusCode != 200) {
-      throw Exception('Retrieving requests for current user did not succeed : ${response.statusCode}');
-    }
+    var response = await http.get(Uri.parse('$requestsUrl/$fromOrTo/$currentUserMail'), headers: header);
     print('resp ${response.body}');
+    if (response.statusCode == 200) {
+      return convertToModel(response);
+    }
+    if (response.statusCode == 204) {
+      return [];
+    }
+    throw Exception('Retrieving requests for current user did not succeed : ${response.statusCode}');
 
+    // } catch (e) {
+    //   throw Exception('Error retrieving current user requests : $e');
+    // }
+  }
+
+  List<RequestData> convertToModel(http.Response response) {
     var bodyList = jsonDecode(response.body) as List<dynamic>;
     return bodyList.map((e) {
       var item = e as Map<String, dynamic>;
@@ -53,14 +70,5 @@ class RequestService {
         DateTime.parse(item['requestTime']),
       );
     }).toList();
-
-    // } catch (e) {
-    //   throw Exception('Error retrieving current user requests : $e');
-    // }
-  }
-
-  Future<http.Response> getRequestsToMe() async {
-    var currentUserMail = UserService.get().loggedInUser?.email;
-    return http.get(Uri.parse('$requestsUrl/to/$currentUserMail'), headers: header);
   }
 }
