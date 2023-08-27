@@ -127,7 +127,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
             Padding(
               padding: const EdgeInsets.only(top: 8, left: 4),
               child: Text(
-                'Chris Hemsworth',
+                // 'Chris Hemsworth',
+                '',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: isLightMode ? BaseTheme.grey : BaseTheme.white,
@@ -161,9 +162,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   BoxShadow(color: BaseTheme.grey.withOpacity(0.6), offset: const Offset(2.0, 4.0), blurRadius: 8),
                 ],
               ),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(60.0)),
-                child: Image.asset('assets/images/userImage.png', width: 100.0, height: 100.0),
+              child: const ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(60.0)),
+                // child: Image.asset('assets/images/userImage.png', width: 100.0, height: 100.0),
               ),
             ),
           ),

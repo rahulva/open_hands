@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:open_hands/app/domain/request_data.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
+
+import '../common/constants.dart';
 import '../components/animation_components.dart';
 
 class RequestListItem extends StatelessWidget {
@@ -23,7 +24,7 @@ class RequestListItem extends StatelessWidget {
 
   Padding coreComponent() {
     return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
       child: InkWell(
         splashColor: Colors.transparent,
         onTap: () {
@@ -37,11 +38,9 @@ class RequestListItem extends StatelessWidget {
           //     ),
           //   ),
           // );
-
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(16.0)),
             boxShadow: <BoxShadow>[
               BoxShadow(
                 color: Colors.grey.withOpacity(0.6),
@@ -58,7 +57,7 @@ class RequestListItem extends StatelessWidget {
 
   ClipRRect buildClipRRect() {
     return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+      borderRadius: const BorderRadius.all(Radius.circular(1.0)),
       child: Stack(
         children: <Widget>[
           Column(
@@ -71,28 +70,86 @@ class RequestListItem extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+                        padding: const EdgeInsets.all(8),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            mainText('To ${requestData.toEmail}'),
-                            subText(requestData.messageText),
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'To: ',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey.withOpacity(.78),
+                                      ),
+                                    ),
+                                    Text(
+                                      requestData.toEmail,
+                                      textAlign: TextAlign.left,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        // color: Colors.grey.withOpacity(0.8),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(width: 4),
+                                Expanded(
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      // Text(
+                                      //   'at, ',
+                                      //   textAlign: TextAlign.right,
+                                      //   style: TextStyle(
+                                      //     fontSize: 14,
+                                      //     color: Colors.grey.withOpacity(0.8),
+                                      //   ),
+                                      // ),
+                                      Text(
+                                        appDateFormat.format(requestData.requestTime),
+                                        textAlign: TextAlign.right,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 8),
+                            Text(
+                              requestData.messageText,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                            const SizedBox(height: 8),
+
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                meaningText(),
-                                // const SizedBox(
-                                //   width: 4,
-                                // ),
-                                Icon(
-                                  FontAwesomeIcons.locationDot,
-                                  size: 12,
-                                  color: AppTheme.buildLightTheme().primaryColor,
+                                meaningText('For post : '),
+                                const SizedBox(
+                                  width: 4,
                                 ),
+                                // Icon(
+                                //   FontAwesomeIcons.locationDot,
+                                //   size: 12,
+                                //   color: AppTheme.buildLightTheme().primaryColor,
+                                // ),
                                 Expanded(
-                                  child: distanceText('On ${requestData.requestTime}'),
+                                  child: Text(
+                                    '${requestData.postId}',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -107,9 +164,7 @@ class RequestListItem extends StatelessWidget {
               ),
             ],
           ),
-          /*
-          favouriteIcon(),
-          */
+          // favouriteIcon(),  // TODO Delete button could go here
         ],
       ),
     );
@@ -123,8 +178,7 @@ class RequestListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           const Text(
-            // '\$${hotelData!.perNight}',
-            '-',
+            '500',
             textAlign: TextAlign.left,
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -144,44 +198,18 @@ class RequestListItem extends StatelessWidget {
     return ;
   }*/
 
-  Text distanceText(String location) {
-    return Text(
-      // '${requestData!.dist.toStringAsFixed(1)} km to city',
-      // 'Collection at ${requestData.location}',
-      location,
-      overflow: TextOverflow.ellipsis,
-      style: TextStyle(fontSize: 14, color: Colors.grey.withOpacity(0.8)),
-    );
-  }
-
-  Text mainText(String text) {
-    return Text(
-      text,
-      textAlign: TextAlign.left,
-      style: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 22,
-      ),
-    );
-  }
-
-  Flexible meaningText() {
+  Flexible meaningText(String test) {
     return Flexible(
-      child: subText("Test"),
+      child: Text(
+        test,
+        style: TextStyle(
+          fontSize: 14,
+          color: Colors.grey.withOpacity(0.8),
+        ),
+        overflow: TextOverflow.visible,
+      ),
     );
 
     // return Container(child: subText(),);
-  }
-
-  Text subText(String text) {
-    return Text(
-      // wordData!.meaning,
-      text,
-      style: TextStyle(
-        fontSize: 14,
-        color: Colors.grey.withOpacity(0.8),
-      ),
-      overflow: TextOverflow.visible,
-    );
   }
 }

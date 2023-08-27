@@ -7,7 +7,7 @@ import 'package:open_hands/app/services/user_service.dart';
 import '../common/constants.dart';
 
 class RequestService {
-  static RequestService postService = RequestService();
+  static final RequestService postService = RequestService();
 
   static RequestService get() {
     return postService;

@@ -102,7 +102,7 @@ class RequestListState extends State<RequestList> with TickerProviderStateMixin 
     ];
   }
 
-  ListView listViewBuilder(List<RequestData> requestList, animationStateHolder) {
+  ListView listViewBuilder(List<RequestData> requestList, AnimationStateHolder animationStateHolder) {
     return ListView.builder(
       itemCount: requestList.length,
       padding: const EdgeInsets.only(top: 8),
