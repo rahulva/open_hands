@@ -119,6 +119,8 @@ class PostListItem extends StatelessWidget {
               ),
             ],
           ),
+          /*
+          // Favorite Icon
           Positioned(
             top: 8,
             right: 8,
@@ -126,7 +128,7 @@ class PostListItem extends StatelessWidget {
               color: Colors.transparent,
               child: favoritIcon(),
             ),
-          )
+          )*/
         ],
       ),
     );
