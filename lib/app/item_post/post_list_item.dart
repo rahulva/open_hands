@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/domain/post_data.dart';
 import 'package:open_hands/app/item_post/post_detail.dart';
@@ -69,7 +71,7 @@ class PostListItem extends StatelessWidget {
         children: <Widget>[
           Column(
             children: <Widget>[
-              // itemImage(),
+              itemImage(postData),
               Container(
                 color: AppTheme.buildLightTheme().colorScheme.background,
                 child: Row(
@@ -231,15 +233,15 @@ class PostListItem extends StatelessWidget {
     );
   }
 
-// AspectRatio itemImage() {
-//   return AspectRatio(
-//                           aspectRatio: 2,
-//                           child: Image.asset(
-//                             hotelData!.imagePath,
-//                             fit: BoxFit.cover,
-//                           ),
-//                         );
-// }
+  AspectRatio itemImage(PostData postData) {
+    return AspectRatio(
+      aspectRatio: 4,
+      child: Image.memory(
+        base64Decode(postData.images[0].imageData),
+        fit: BoxFit.cover,
+      ),
+    );
+  }
 
 /*
   RatingBar ratingBar() {
@@ -270,5 +272,3 @@ class PostListItem extends StatelessWidget {
     );
   }*/
 }
-
-
