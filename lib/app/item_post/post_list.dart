@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:open_hands/app/services/post_service.dart';
 import 'package:open_hands/app/item_post/post_list_item.dart';
-import 'package:open_hands/app/services/user_service.dart';
+import 'package:open_hands/app/services/post_service.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
 import '../domain/post_data.dart';

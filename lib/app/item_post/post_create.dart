@@ -31,15 +31,17 @@ class _PostCreateState extends State<PostCreate> {
   final TextEditingController _locationController = TextEditingController();
   final ImageSliderWidget _imageWidget = ImageSliderWidget();
 
-  static const List<String> category = [
-    'Furniture',
-    'Book',
-    'Home Appliances',
-    'Electronics',
+  static  List<String> category =  [
+    'Books',
     'Computer',
-    'Laptop',
+    'Cloths',
+    'Electronics',
+    'Footwear',
+    'Furniture',
+    'Home Appliances',
     'Others'
   ];
+
   static const List<String> condition = ['New', 'Like New', 'Slightly Used', 'Old', 'Heavily Used'];
 
   // List<DropdownMenuEntry<String>> list = categorySubCategory.keys
