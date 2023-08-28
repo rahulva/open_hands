@@ -66,6 +66,7 @@ class PostService {
       data.add(PostData(item['id'], item['title'], item['description'], item['category'], item['condition'],
           item['location'], images, DateTime.parse(item['dateTime']), item['createdBy']));
     }
+    print('Received ${data.length} post');
     return data;
   }
 

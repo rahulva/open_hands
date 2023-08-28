@@ -70,7 +70,9 @@ class InboxState extends State<Inbox> with TickerProviderStateMixin {
                           onRefresh: () async {
                             requestList = await getData();
                           },
-                          child: listViewBuilder(requestList, animationStateHolder),
+                          child: requestList.isEmpty
+                              ? const Center(child: Text('No request messages...'))
+                              : listViewBuilder(requestList, animationStateHolder),
                         ),
                       ),
                     ),

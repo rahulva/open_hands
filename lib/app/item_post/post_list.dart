@@ -180,29 +180,32 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
 
   Widget defaultListView() {
     return RefreshIndicator(
-        onRefresh: () async {
-          posts = await getDataFor(widget.pageTitle);
-        },
-        child: ListView.builder(
-          itemCount: posts.length,
-          padding: const EdgeInsets.only(top: 8),
-          scrollDirection: Axis.vertical,
-          itemBuilder: (BuildContext context, int index) {
-            var length2 = posts.length;
-            final int count = length2 > 10 ? 10 : length2;
-            var interval = Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn);
-            var curvedAnimation = CurvedAnimation(parent: animationController!, curve: interval);
-            final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation);
-            animationController?.forward();
+      onRefresh: () async {
+        posts = await getDataFor(widget.pageTitle);
+      },
+      child: posts.isEmpty
+          ? const Center(child: Text('No posts available'))
+          : ListView.builder(
+              itemCount: posts.length,
+              padding: const EdgeInsets.only(top: 8),
+              scrollDirection: Axis.vertical,
+              itemBuilder: (BuildContext context, int index) {
+                var length2 = posts.length;
+                final int count = length2 > 10 ? 10 : length2;
+                var interval = Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn);
+                var curvedAnimation = CurvedAnimation(parent: animationController!, curve: interval);
+                final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation);
+                animationController?.forward();
 
-            return PostListItem(
-              callback: () {},
-              postData: posts[index],
-              animation: animation,
-              animationController: animationController!,
-            );
-          },
-        ));
+                return PostListItem(
+                  callback: () {},
+                  postData: posts[index],
+                  animation: animation,
+                  animationController: animationController!,
+                );
+              },
+            ),
+    );
   }
 
   Widget getAppBarUI() {

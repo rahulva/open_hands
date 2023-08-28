@@ -69,7 +69,9 @@ class RequestListState extends State<RequestList> with TickerProviderStateMixin 
                           onRefresh: () async {
                             _requestList = await getData();
                           },
-                          child: listViewBuilder(_requestList, _animationStateHolder),
+                          child: _requestList.isEmpty
+                              ? const Center(child: Text('No request messages...'))
+                              : listViewBuilder(_requestList, _animationStateHolder),
                         ),
                       ),
                     ),
