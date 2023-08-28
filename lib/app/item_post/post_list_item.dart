@@ -71,7 +71,7 @@ class PostListItem extends StatelessWidget {
         children: <Widget>[
           Column(
             children: <Widget>[
-              itemImage(postData),
+              if (postData.images.isNotEmpty) itemImage(postData),
               Container(
                 color: AppTheme.buildLightTheme().colorScheme.background,
                 child: Row(
