@@ -22,6 +22,7 @@ dependencies:
   uuid: ^3.0.7
   phone_form_field: ^8.1.0
   provider: ^6.0.5
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:

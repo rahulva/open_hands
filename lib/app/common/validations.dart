@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
 String? validatePassword(value) {
@@ -17,9 +18,15 @@ String? validateEmail(value) {
   if (value.length < 10) {
     return 'Should be at least 10 characters';
   }
+
   if (value.length > 50) {
     return 'max 50';
   }
+
+  if (EmailValidator.validate(value)) {
+    return 'Invalid Email';
+  }
+
   return null;
 }
 
