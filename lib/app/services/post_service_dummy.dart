@@ -22,7 +22,7 @@ class PostServiceDummy extends PostService {
     return deletePostDummy(postId);
   }
 
-  Future<http.Response> getAllPosts() async {
+  Future<List<PostData>> getAllPosts() async {
     return getAllPostsDummy();
   }
 
@@ -51,9 +51,9 @@ class PostServiceDummy extends PostService {
     return http.Response('', 204);
   }
 
-  http.Response getAllPostsDummy() {
+  List<PostData> getAllPostsDummy() {
     fillIfEmpty();
-    return http.Response(jsonEncode(dummyPosts), 200);
+    return dummyPosts;
   }
 
   void fillIfEmpty() {

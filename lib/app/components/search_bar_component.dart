@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
-Widget getSearchBarUI(BuildContext context) {
+Widget getSearchBarUI(BuildContext context, String inputHint, Future<void> Function(String) callback) {
+  TextEditingController searchController = TextEditingController();
+
   return Padding(
     padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
     child: Row(
@@ -24,7 +26,8 @@ Widget getSearchBarUI(BuildContext context) {
                   onChanged: (String txt) {},
                   style: const TextStyle(fontSize: 18),
                   cursorColor: AppTheme.buildLightTheme().primaryColor,
-                  decoration: const InputDecoration(border: InputBorder.none, hintText: 'London...'),
+                  decoration: InputDecoration(border: InputBorder.none, hintText: inputHint),
+                  controller: searchController,
                 ),
               ),
             ),
@@ -44,6 +47,7 @@ Widget getSearchBarUI(BuildContext context) {
               borderRadius: const BorderRadius.all(Radius.circular(32.0)),
               onTap: () {
                 FocusScope.of(context).requestFocus(FocusNode());
+                callback(searchController.text);
               },
               child: Padding(
                 padding: const EdgeInsets.all(16.0),

@@ -34,14 +34,17 @@ class PostService {
     return http.delete(Uri.parse("$postsUrl/$postId"), headers: header);
   }
 
-  Future<http.Response> getAllPosts() async {
-    return http.get(Uri.parse(postsUrl), headers: header);
+  Future<List<PostData>> getAllPosts() async {
+    var response = await http.get(Uri.parse(postsUrl), headers: header);
+    if (response.statusCode == 200) {
+      return toModel(response);
+    }
+    return List.empty();
   }
 
-  Future<List<PostData>> getAllPostsInType() async {
-    var response = await getAllPosts();
+  Future<List<PostData>> search(String term) async {
+    http.Response response = await http.get(Uri.parse('$postsUrl/search/$term'), headers: header);
     if (response.statusCode == 200) {
-      // print(response.body);
       return toModel(response);
     }
     return List.empty();
@@ -63,8 +66,16 @@ class PostService {
         }
         images.add(AppImageData(img['id'], img['name'], img['postId'], img['type'], img['imageData']));
       }
-      data.add(PostData(item['id'], item['title'], item['description'], item['category'], item['condition'],
-          item['location'], images, DateTime.parse(item['dateTime']), item['createdBy']));
+      data.add(PostData(
+          item['id'],
+          item['title'],
+          item['description'],
+          item['category'],
+          item['condition'],
+          item['location'],
+          images,
+          DateTime.parse(item['dateTime']),
+          item['createdBy']));
     }
     print('Received ${data.length} post');
     return data;

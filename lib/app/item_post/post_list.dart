@@ -4,6 +4,7 @@ import 'package:open_hands/app/item_post/post_list_item.dart';
 import 'package:open_hands/app/services/post_service.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
+import '../components/search_bar_component.dart';
 import '../domain/post_data.dart';
 
 class PostList extends StatefulWidget {
@@ -27,8 +28,6 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
   @override
   void initState() {
     animationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
-    // posts = PostService.get().getAllPostsInType() as List<PostData>;
-    print("post_list Making request");
 
     super.initState();
     getDataFor(widget.pageTitle).then((value) {
@@ -39,12 +38,11 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
   }
 
   Future<List<PostData>> getDataFor(String page) async {
-    return PostService.get().getAllPostsInType();
+    return PostService.get().getAllPosts();
   }
 
-  Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
-    return true;
+  Future<List<PostData>> searchData(String searchTerm) async {
+    return PostService.get().search(searchTerm);
   }
 
   @override
@@ -80,7 +78,12 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
                             delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                               return Column(
                                 children: <Widget>[
-                                  getSearchBarUI(),
+                                  getSearchBarUI(context, 'Search term...', (String searchTerm) async {
+                                    List<PostData> results = await searchData(searchTerm);
+                                    setState(() {
+                                      posts = results;
+                                    });
+                                  }),
                                   /*getTimeDateUI(),*/
                                 ],
                               );
@@ -97,7 +100,8 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
                       },
                       body: Container(
                         color: AppTheme.buildLightTheme().colorScheme.background,
-                        child: defaultListView(),
+                        child:
+                        defaultListView(),
                       ),
                     ),
                   )
@@ -106,73 +110,6 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget getSearchBarUI() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 16, top: 8, bottom: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppTheme.buildLightTheme().colorScheme.background,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(38.0),
-                  ),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(color: Colors.grey.withOpacity(0.2), offset: const Offset(0, 2), blurRadius: 8.0),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
-                  child: TextField(
-                    onChanged: (String txt) {},
-                    style: const TextStyle(
-                      fontSize: 18,
-                    ),
-                    cursorColor: AppTheme.buildLightTheme().primaryColor,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'London...',
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: AppTheme.buildLightTheme().primaryColor,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(38.0),
-              ),
-              boxShadow: <BoxShadow>[
-                BoxShadow(color: Colors.grey.withOpacity(0.4), offset: const Offset(0, 2), blurRadius: 8.0),
-              ],
-            ),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(32.0),
-                ),
-                onTap: () {
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Icon(FontAwesomeIcons.magnifyingGlass,
-                      size: 20, color: AppTheme.buildLightTheme().colorScheme.background),
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -257,10 +194,12 @@ class _PostListState extends State<PostList> with TickerProviderStateMixin {
     return SizedBox(
       width: AppBar().preferredSize.height + 40,
       height: AppBar().preferredSize.height,
-      child: Row(
+      child: const Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[favoriteButton(), locationButton()],
+        children: <Widget>[
+          /*favoriteButton(), locationButton()*/
+        ],
       ),
     );
   }
