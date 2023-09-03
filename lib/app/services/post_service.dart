@@ -59,23 +59,7 @@ class PostService {
     var jsonDecode2 = convert.jsonDecode(response.body) as List<dynamic>;
     List<PostData> data = [];
     for (var item in jsonDecode2) {
-      List<AppImageData> images = [];
-      for (var img in item['images'] as List<dynamic>) {
-        if (kDebugMode) {
-          print(img);
-        }
-        images.add(AppImageData(img['id'], img['name'], img['postId'], img['type'], img['imageData']));
-      }
-      data.add(PostData(
-          item['id'],
-          item['title'],
-          item['description'],
-          item['category'],
-          item['condition'],
-          item['location'],
-          images,
-          DateTime.parse(item['dateTime']),
-          item['createdBy']));
+      data.add(PostData.fromJson(item));
     }
     print('Received ${data.length} post');
     return data;

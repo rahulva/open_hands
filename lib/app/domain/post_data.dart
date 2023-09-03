@@ -18,6 +18,22 @@ class PostData {
   PostData(this.id, this.title, this.description, this.category, this.condition, this.location, this.images,
       this.dateTime, this.createdBy);
 
+  PostData.fromJson(Map<String, dynamic> item) {
+    List<AppImageData> newImages = [];
+    for (var img in (item['images'] as List<dynamic>)) {
+      newImages.add(AppImageData.fromJson(img));
+    }
+    id = item['id'];
+    title = item['title'];
+    description = item['description'];
+    category = item['category'];
+    condition = item['condition'];
+    location = item['location'];
+    images = newImages;
+    dateTime = DateTime.parse(item['dateTime']);
+    createdBy = item['createdBy'];
+  }
+
   @override
   String toString() {
     return 'PostData{id: $id, title: $title, description: $description, category: $category, condition: $condition'
