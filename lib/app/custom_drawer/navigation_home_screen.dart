@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/custom_drawer/drawer_user_controller.dart';
-import 'package:open_hands/app/hotel_booking/hotel_home_screen.dart';
 import 'package:open_hands/app/inbox/inbox.dart';
 import 'package:open_hands/app/item_post/post_create.dart';
 import 'package:open_hands/app/item_post/post_list.dart';

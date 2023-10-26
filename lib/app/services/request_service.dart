@@ -39,7 +39,6 @@ class RequestService {
 
   Future<List<RequestData>> getMessages(String fromOrTo) async {
     var currentUserMail = UserService.get().loggedInUser?.email;
-    // try {
     var response = await http.get(Uri.parse('$requestsUrl/$fromOrTo/$currentUserMail'), headers: header);
     print('resp ${response.body}');
     if (response.statusCode == 200) {
@@ -49,10 +48,6 @@ class RequestService {
       return [];
     }
     throw Exception('Retrieving requests for current user did not succeed : ${response.statusCode}');
-
-    // } catch (e) {
-    //   throw Exception('Error retrieving current user requests : $e');
-    // }
   }
 
   List<RequestData> convertToModel(http.Response response) {

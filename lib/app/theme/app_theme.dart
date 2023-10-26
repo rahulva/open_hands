@@ -20,13 +20,6 @@ class AppTheme {
     );
   }
 
-  //TEMP colours/ to be replaced
-  // static const Color mirage = Color(0xff1d273b);
-  // static const Color rawSienna = Color(0xffd7834f);
-  // static const Color creamColor = Color(0xfff5f5ff);
-  // static const Color yellowish = Color(0xffE7B975);
-  // static const Color shadowColor = Colors.black87;
-
   static ThemeData buildLightTheme() {
     final Color primaryColor = HexColor('#54D3C2');
     final Color secondaryColor = HexColor('#54D3C2');
@@ -44,9 +37,7 @@ class AppTheme {
       splashColor: Colors.white24,
       splashFactory: InkRipple.splashFactory,
       canvasColor: Colors.white,
-      // backgroundColor: const Color(0xFFFFFFFF),
       scaffoldBackgroundColor: const Color(0xFFF6F6F6),
-      // errorColor: const Color(0xFFB00020),
       buttonTheme: ButtonThemeData(
         colorScheme: colorScheme,
         textTheme: ButtonTextTheme.primary,

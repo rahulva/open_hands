@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
-import '../hotel_booking/hotel_home_screen.dart';
+import '../components/components.dart';
 import '../screens/filter/filters_screen.dart';
 
 Widget getFilterBarUI(BuildContext context, int resultCount) {

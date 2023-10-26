@@ -47,7 +47,7 @@ Widget getTimeDateUI(BuildContext context, Function(DateTime, DateTime) dateAppl
                         ),
                         Text(
                           '${DateFormat("dd, MMM").format(startDate)} - ${DateFormat("dd, MMM").format(endDate)}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w100,
                             fontSize: 16,
                           ),
@@ -98,7 +98,7 @@ Widget getTimeDateUI(BuildContext context, Function(DateTime, DateTime) dateAppl
                         const SizedBox(
                           height: 8,
                         ),
-                        Text(
+                        const Text(
                           '1 Room - 2 Adults',
                           style: TextStyle(
                             fontWeight: FontWeight.w100,

@@ -14,7 +14,7 @@ class AppMobileField extends AppTextField {
     return SizedBox(
       height: 70,
       child: PhoneFormField(
-        defaultCountry: IsoCode.DE,
+        defaultCountry: IsoCode.LK,
         decoration: buildInputDecoration(),
         enabled: true,
         controller: phoneController,

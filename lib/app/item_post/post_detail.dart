@@ -52,23 +52,13 @@ class PostDetail extends StatelessWidget {
     const title = TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.bold,
-      // color: AppTheme.creamColor,
     );
 
     var formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
 
     return Container(
-      // padding: const EdgeInsets.only(top: 18, bottom: 18, left: 18, right: 18),
       padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
       alignment: Alignment.topLeft,
-      // decoration: BoxDecoration(
-      //   // color: AppTheme.buildLightTheme().colorScheme.
-      //   color: AppTheme.buildLightTheme().colorScheme.outline,
-      //   borderRadius: const BorderRadius.only(
-      //     topRight: Radius.circular(100),
-      //     topLeft: Radius.circular(100),
-      //   ),
-      // ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

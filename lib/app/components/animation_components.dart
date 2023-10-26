@@ -8,7 +8,7 @@ AnimatedBuilder animationWrapper(
       return FadeTransition(
         opacity: animation!,
         child: Transform(
-          transform: Matrix4.translationValues(0.0, 50 * (1.0 - animation!.value), 0.0),
+          transform: Matrix4.translationValues(0.0, 50 * (1.0 - animation.value), 0.0),
           child: contentWidget,
         ),
       );

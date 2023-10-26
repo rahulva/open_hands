@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/domain/request_data.dart';
-import 'package:open_hands/app/request/request_list_item.dart';
+import 'package:open_hands/app/inbox/inbox_item.dart';
 import 'package:open_hands/app/services/request_service.dart';
 import 'package:open_hands/app/theme/app_theme.dart';
 
@@ -93,15 +93,8 @@ class InboxState extends State<Inbox> with TickerProviderStateMixin {
           return const SizedBox(
             height: 10,
           );
-          // return Column(
-          //   children: <Widget>[
-          //     /*getSearchBarUI(context),*/
-          //     /*getTimeDateUI(),*/
-          //   ],
-          // );
         }, childCount: 1),
       ),
-      // getFilterBarUI(context, 10),
     ];
   }
 
@@ -112,7 +105,7 @@ class InboxState extends State<Inbox> with TickerProviderStateMixin {
       scrollDirection: Axis.vertical,
       itemBuilder: (BuildContext context, int index) {
         animationStateHolder.initAnimation(requestList.length, index);
-        return RequestListItem(
+        return InboxItem(
           callback: () {},
           requestData: requestList[index],
           animationStateHolder: animationStateHolder,
@@ -120,6 +113,4 @@ class InboxState extends State<Inbox> with TickerProviderStateMixin {
       },
     );
   }
-
-// FIXME This is a cop
 }

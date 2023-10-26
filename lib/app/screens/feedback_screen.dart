@@ -115,13 +115,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               child: TextField(
                 maxLines: null,
                 onChanged: (String txt) {},
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: BaseTheme.fontName,
                   fontSize: 16,
                   color: BaseTheme.darkGrey,
                 ),
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(border: InputBorder.none, hintText: 'Enter your feedback...'),
+                decoration: const InputDecoration(border: InputBorder.none, hintText: 'Enter your feedback...'),
               ),
             ),
           ),

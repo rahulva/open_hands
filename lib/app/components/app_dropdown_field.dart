@@ -90,7 +90,7 @@ class AppDropDownField extends StatelessWidget {
   }
 
   OutlineInputBorder inputBorderEnabled() {
-    return OutlineInputBorder(
+    return const OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xffEBEBEC)),
     );
   }

@@ -4,10 +4,8 @@ import 'dart:convert' as convert;
 import 'dart:io';
 
 import 'package:async/async.dart';
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:open_hands/app/common/constants.dart';
-import 'package:open_hands/app/domain/image_data.dart';
 import 'package:open_hands/app/domain/post_data.dart';
 import 'package:path/path.dart';
 

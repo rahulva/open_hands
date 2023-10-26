@@ -23,7 +23,7 @@ String? validateEmail(value) {
     return 'max 50';
   }
 
-  if (EmailValidator.validate(value)) {
+  if (!EmailValidator.validate(value)) {
     return 'Invalid Email';
   }
 

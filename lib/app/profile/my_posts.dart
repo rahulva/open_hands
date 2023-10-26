@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_hands/app/domain/post_data.dart';
-import 'package:open_hands/app/domain/request_data.dart';
 import 'package:open_hands/app/item_post/post_list_item.dart';
-import 'package:open_hands/app/request/request_list_item.dart';
 import 'package:open_hands/app/services/post_service.dart';
 import 'package:open_hands/app/services/request_service.dart';
 import 'package:open_hands/app/services/user_service.dart';
@@ -75,12 +73,6 @@ class MyPostsState extends State<MyPosts> with TickerProviderStateMixin {
                               return const SizedBox(
                                 height: 10,
                               );
-                              // return Column(
-                              //   children: <Widget>[
-                              //     /*getSearchBarUI(context),*/
-                              //     /*getTimeDateUI(),*/
-                              //   ],
-                              // );
                             }, childCount: 1),
                           ),
                           // getFilterBarUI(context, 10),
